@@ -4,8 +4,10 @@ const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
+const authParent = require('../../middleware/auth-parent');
 
 const Parent = require('../../models/Parent');
+const Teacher = require('../../models/Teacher');
 
 // POST api/parents
 // Register parent
@@ -74,8 +76,8 @@ router.post(
           res.json({ token });
         }
       );
-    } catch (err) {
-      console.error(err);
+    } catch (error) {
+      console.error(error.message);
       res.status(500).send('Server Error');
     }
   }
@@ -88,7 +90,38 @@ router.get('/', async (req, res) => {
     const parents = await Parent.find();
     res.json(parents);
   } catch (error) {
-    console.error(error);
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+// GET api/parents/me
+// Get current parent
+router.get('/me', authParent, async (req, res) => {
+  try {
+    const id = req.parent.id;
+    const parent = await Parent.findOne({ _id: id });
+
+    res.json(parent);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+// PUT api/parents/me
+// Update current parent
+router.put('/me', authParent, async (req, res) => {
+  try {
+    const id = req.parent.id;
+
+    const parent = await Parent.findOneAndUpdate({ _id: id }, req.body, {
+      new: true,
+    });
+
+    res.json(parent);
+  } catch (error) {
+    console.error(error.message);
     res.status(500).send('Server Error');
   }
 });
@@ -106,7 +139,7 @@ router.get('/:parent_id', async (req, res) => {
 
     res.json(parent);
   } catch (error) {
-    console.error(error);
+    console.error(error.message);
     res.status(500).send('Server Error');
   }
 });

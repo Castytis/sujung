@@ -2,8 +2,8 @@ const mongoose = require('mongoose');
 
 const MeetingSchema = new mongoose.Schema({
   organiser: {
-    type: String,
-    require: true,
+    type: Schema.Types.ObjectId,
+    ref: 'teacher',
   },
   title: {
     type: String,
@@ -24,11 +24,12 @@ const MeetingSchema = new mongoose.Schema({
   participants: [
     {
       teacher: {
-        type: String,
-        required: true,
+        type: Schema.Types.ObjectId,
+        ref: 'teacher',
       },
       parent: {
-        type: String,
+        type: Schema.Types.ObjectId,
+        ref: 'parent',
       },
     },
   ],

@@ -4,6 +4,7 @@ const { body, validationResult } = require('express-validator');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
+const authTeacher = require('../../middleware/auth-teacher');
 
 const Teacher = require('../../models/Teacher');
 
@@ -87,6 +88,37 @@ router.get('/', async (req, res) => {
     res.json(teachers);
   } catch (error) {
     console.error(error);
+    res.status(500).send('Server Error');
+  }
+});
+
+// GET api/teachers/me
+// Get current teacher
+router.get('/me', authTeacher, async (req, res) => {
+  try {
+    const id = req.teacher.id;
+    const teacher = await Teacher.findOne({ _id: id });
+
+    res.json(teacher);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+// PUT api/teachers/me
+// Update current teacher
+router.put('/me', authTeacher, async (req, res) => {
+  try {
+    const id = req.teacher.id;
+
+    const teacher = await Teacher.findOneAndUpdate({ _id: id }, req.body, {
+      new: true,
+    });
+
+    res.json(teacher);
+  } catch (error) {
+    console.error(error.message);
     res.status(500).send('Server Error');
   }
 });
