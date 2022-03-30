@@ -79,4 +79,34 @@ router.post(
   }
 );
 
+// GET api/teachers
+// Get all teachers
+router.get('/', async (req, res) => {
+  try {
+    const teachers = await Teacher.find();
+    res.json(teachers);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server Error');
+  }
+});
+
+// GET api/teachers/:teacher_id
+// Get teacher by ID
+router.get('/:teacher_id', async (req, res) => {
+  try {
+    const id = req.params.teacher_id;
+    const teacher = await Teacher.findOne({ _id: id });
+
+    if (!teacher) {
+      return res.status(400).json({ msg: 'Mokytojas nerastas' });
+    }
+
+    res.json(teacher);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server Error');
+  }
+});
+
 module.exports = router;

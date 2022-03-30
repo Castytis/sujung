@@ -81,4 +81,34 @@ router.post(
   }
 );
 
+// GET api/parents
+// Get all parents
+router.get('/', async (req, res) => {
+  try {
+    const parents = await Parent.find();
+    res.json(parents);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server Error');
+  }
+});
+
+// GET api/parents/:parent_id
+// Get parent by ID
+router.get('/:parent_id', async (req, res) => {
+  try {
+    const id = req.params.parent_id;
+    const parent = await Parent.findOne({ _id: id });
+
+    if (!parent) {
+      return res.status(400).json({ msg: 'Globėjas nerastas' });
+    }
+
+    res.json(parent);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Server Error');
+  }
+});
+
 module.exports = router;
