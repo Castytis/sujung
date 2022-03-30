@@ -22,12 +22,16 @@ const TeacherSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  info: {
+    type: String,
+    required: true,
+  },
   classes: {
     type: String,
     required: true,
   },
 });
 
-const Teacher = mongoose.model('parent', TeacherSchema);
+const Teacher = mongoose.model('teacher', TeacherSchema);
 
 module.exports = Teacher;

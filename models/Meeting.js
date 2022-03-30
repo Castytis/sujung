@@ -34,6 +34,6 @@ const MeetingSchema = new mongoose.Schema({
   ],
 });
 
-const Meeting = mongoose.model('parent', MeetingSchema);
+const Meeting = mongoose.model('meeting', MeetingSchema);
 
 module.exports = Meeting;
