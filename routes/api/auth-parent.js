@@ -1,27 +1,27 @@
 const express = require('express');
 const router = express.Router();
-const authTeacher = require('../../middleware/auth-teacher');
+const authParent = require('../../middleware/auth-parent');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const config = require('config');
 const { body, validationResult } = require('express-validator');
 
-const Teacher = require('../../models/Teacher');
+const Parent = require('../../models/Parent');
 
 // GET api/auth-teacher
 // Get authenticated teacher
-router.get('/', authTeacher, async (req, res) => {
+router.get('/', authParent, async (req, res) => {
   try {
-    const teacher = await Teacher.findById(req.teacher.id).select('-password');
-    res.json(teacher);
+    const parent = await Parent.findById(req.parent.id).select('-password');
+    res.json(parent);
   } catch (error) {
     console.error(error);
     res.status(500).send('Server Error');
   }
 });
 
-// POST api/auth-teacher
-// Login teacher
+// POST api/auth-parent
+// Login parent
 router.post(
   '/',
   [
@@ -37,25 +37,29 @@ router.post(
     const { email, password } = req.body;
 
     try {
-      let teacher = await Teacher.findOne({ email: email });
+      let parent = await Parent.findOne({ email: email });
 
-      if (!teacher) {
+      if (!parent) {
         return res.status(400).json({
-          errors: [{ msg: 'Mokytojas su šiais prisijungimais neegzistuoja' }],
+          errors: [
+            { msg: 'Mokinio globėjas su šiais prisijungimais neegzistuoja' },
+          ],
         });
       }
 
-      const isEqual = await bcrypt.compare(password, teacher.password);
+      const isEqual = await bcrypt.compare(password, parent.password);
 
       if (!isEqual) {
         return res.status(400).json({
-          errors: [{ msg: 'Mokytojas su šiais prisijungimais neegzistuoja' }],
+          errors: [
+            { msg: 'Mokinio globėjas su šiais prisijungimais neegzistuoja' },
+          ],
         });
       }
 
       const payload = {
-        teacher: {
-          id: teacher.id,
+        parent: {
+          id: parent.id,
         },
       };
 

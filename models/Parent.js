@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { required } = require('nodemon/lib/config');
 
 const ParentSchema = new mongoose.Schema({
   name: {
@@ -18,16 +19,14 @@ const ParentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  child: [
-    {
-      childName: {
-        type: String,
-      },
-      childSurname: {
-        type: String,
-      },
-    },
-  ],
+  childName: {
+    type: [String],
+    required: true,
+  },
+  childSurname: {
+    type: [String],
+    required: true,
+  },
 });
 
 const Parent = mongoose.model('parent', ParentSchema);
