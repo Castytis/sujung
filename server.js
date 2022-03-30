@@ -3,7 +3,7 @@ const connectDB = require('./config/database');
 const teachers = require('./routes/api/teacher');
 const parents = require('./routes/api/parent');
 const meetings = require('./routes/api/meeting');
-const authentication = require('./routes/api/authentication');
+const authTeacher = require('./routes/api/auth-teacher');
 
 const app = express();
 const PORT = 5000;
@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 app.use('/api/teachers', teachers);
 app.use('/api/parents', parents);
 app.use('/api/meetings', meetings);
-app.use('/api/authentication', authentication);
+app.use('/api/auth-teacher', authTeacher);
 
 app.listen(PORT, () => {
   console.log(`App listening on port ${PORT}`);
