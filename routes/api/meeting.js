@@ -45,10 +45,42 @@ router.post(
       const meeting = await newMeeting.save();
       res.json(meeting);
     } catch (error) {
-      console.error(err.message);
+      console.error(error.message);
       res.status(500).send('Server Error');
     }
   }
 );
+
+// Teacher & Parent
+// GET api/meetings
+// Get all meetings
+router.get('/', [authTeacher, authParent], async (req, res) => {
+  try {
+    const meetings = await Meeting.find();
+    res.json(meetings);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+});
+
+// Teacher & Parent
+// GET api/meetings/:meeting_id
+// Get meeting by id
+router.get('/:meeting_id', [authTeacher, authParent], async (req, res) => {
+  try {
+    const id = req.params.meeting_id;
+    const meeting = await Meeting.findOne({ _id: id });
+
+    if (!meeting) {
+      return res.status(400).json({ msg: 'Susitikimas nerastas' });
+    }
+
+    res.json(meeting);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+});
 
 module.exports = router;
