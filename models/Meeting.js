@@ -1,5 +1,7 @@
 const mongoose = require('mongoose');
 
+const Schema = mongoose.Schema;
+
 const MeetingSchema = new mongoose.Schema({
   organiser: {
     type: Schema.Types.ObjectId,
@@ -12,6 +14,9 @@ const MeetingSchema = new mongoose.Schema({
   subject: {
     type: String,
     require: true,
+  },
+  text: {
+    type: String,
   },
   date: {
     type: Date,
