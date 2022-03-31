@@ -64,6 +64,22 @@ router.get('/', [authTeacher, authParent], async (req, res) => {
   }
 });
 
+// Get Teachers meetings
+// GET api/meetings/me
+// Get meetings by organiser
+router.get('/me', authTeacher, async (req, res) => {
+  try {
+    const id = req.teacher.id;
+
+    const meetings = await Meeting.find({ organiser: id });
+
+    res.json(meetings);
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 // Teacher & Parent
 // GET api/meetings/:meeting_id
 // Get meeting by id
