@@ -26,18 +26,24 @@ const MeetingSchema = new mongoose.Schema({
     type: String,
     require: true,
   },
-  participants: [
-    {
-      teacher: {
-        type: Schema.Types.ObjectId,
-        ref: 'teacher',
+  participants: {
+    teachers: [
+      {
+        teacher: {
+          type: Schema.Types.ObjectId,
+          ref: 'teacher',
+        },
       },
-      parent: {
-        type: Schema.Types.ObjectId,
-        ref: 'parent',
+    ],
+    parents: [
+      {
+        parent: {
+          type: Schema.Types.ObjectId,
+          ref: 'parent',
+        },
       },
-    },
-  ],
+    ],
+  },
 });
 
 const Meeting = mongoose.model('meeting', MeetingSchema);

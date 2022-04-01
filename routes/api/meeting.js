@@ -99,4 +99,27 @@ router.get('/:meeting_id', [authTeacher, authParent], async (req, res) => {
   }
 });
 
+// Teacher
+// Delete api/meetings/:meeting_id
+// Delete meeting
+router.delete('/:meeting_id', authTeacher, async (req, res) => {
+  try {
+    const meeting = await Meeting.findById(req.params.meeting_id);
+
+    if (!meeting) {
+      return res.status(404).json({ msg: 'Susitikimas nerastas' });
+    }
+
+    if (meeting.organiser.toString() !== req.teacher.id) {
+      return res.status(401).json({ msg: 'Not authorized' });
+    }
+
+    await meeting.remove();
+    res.json({ msg: 'Susitikimas ištrintas' });
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 module.exports = router;
