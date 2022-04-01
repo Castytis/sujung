@@ -99,6 +99,47 @@ router.get('/:meeting_id', [authTeacher, authParent], async (req, res) => {
   }
 });
 
+// Teacher & Parent
+// GET api/meetings/participating/me
+// Get Meetings user is participating
+router.get('/participating/me', [authTeacher, authParent], async (req, res) => {
+  let teacher;
+  let parent;
+
+  try {
+    // Meetings for teacher
+    if (req.teacher) {
+      teacher = req.teacher.id;
+      const meetings = await Meeting.find({
+        'participants.teachers.teacher': teacher,
+      });
+
+      if (!meetings) {
+        return res.status(400).json({ msg: 'Susitikimų nėra' });
+      }
+
+      res.json(meetings);
+    }
+
+    // Meetings for parents
+    if (req.parent) {
+      parent = req.parent.id;
+      const meetings = await Meeting.find({
+        'participants.parents.parent': parent,
+      });
+
+      if (!meetings) {
+        return res.status(400).json({ msg: 'Susitikimų nėra' });
+      }
+
+      res.json(meetings);
+    }
+  } catch (error) {
+    console.error(error.message);
+    res.status(500).send('Server Error');
+  }
+});
+
 // Teacher
 // Delete api/meetings/:meeting_id
 // Delete meeting
