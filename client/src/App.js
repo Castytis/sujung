@@ -12,16 +12,16 @@ import Register from './components/auth/Register';
 function App() {
   return (
     <Fragment>
-      <NavigationBar />
-      <Layout>
-        <BrowserRouter>
+      <BrowserRouter>
+        <NavigationBar />
+        <Layout>
           <Routes>
             <Route path='/' element={<Landing />} />
             <Route path='/register' element={<Register />} />
             <Route path='/login' element={<Login />} />
           </Routes>
-        </BrowserRouter>
-      </Layout>
+        </Layout>
+      </BrowserRouter>
     </Fragment>
   );
 }
