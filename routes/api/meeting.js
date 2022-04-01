@@ -175,4 +175,68 @@ router.put(
   }
 );
 
+// Teacher & Parent
+// Put api/meetings/leave/:meeting_id
+// Leave meeting
+router.put(
+  '/leave/:meeting_id',
+  [authTeacher, authParent],
+  async (req, res) => {
+    let participantParent;
+    let participantTeacher;
+
+    try {
+      const meeting = await Meeting.findById(req.params.meeting_id);
+
+      // Teacher is leaving
+      if (req.teacher) {
+        participantTeacher = req.teacher.id;
+
+        if (
+          meeting.participants.teachers.filter((participant) => {
+            return participant.teacher.toString() === participantTeacher;
+          }).length === 0
+        ) {
+          return res.status(400).json({ msg: 'Nesate susitikimo dalyvis' });
+        }
+
+        const teacherIndex = meeting.participants.teachers
+          .map((participant) => {
+            return participant.teacher.toString();
+          })
+          .indexOf(participantTeacher);
+        meeting.participants.teachers.splice(teacherIndex, 1);
+        await meeting.save();
+      }
+
+      // Parent is leaving
+      if (req.parent) {
+        participantParent = req.parent.id;
+
+        if (
+          meeting.participants.parents.filter((participant) => {
+            return participant.parent.toString() === participantParent;
+          }).length === 0
+        ) {
+          return res.status(400).json({ msg: 'Nesate susitikimo dalyvis' });
+        }
+
+        const parentIndex = meeting.participants.parents
+          .map((participant) => {
+            return participant.parent.toString();
+          })
+          .indexOf(participantParent);
+
+        meeting.participants.parents.splice(parentIndex, 1);
+        await meeting.save();
+      }
+
+      res.json(meeting.participants);
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send('Server Error');
+    }
+  }
+);
+
 module.exports = router;
