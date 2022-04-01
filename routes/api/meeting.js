@@ -122,4 +122,57 @@ router.delete('/:meeting_id', authTeacher, async (req, res) => {
   }
 });
 
+// Teacher & Parent
+// Put api/meetings/participate/:meeting_id
+// Participate in meeting
+router.put(
+  '/participate/:meeting_id',
+  [authTeacher, authParent],
+  async (req, res) => {
+    let participantParent;
+    let participantTeacher;
+
+    try {
+      const meeting = await Meeting.findById(req.params.meeting_id);
+
+      // Participant is teacher
+      if (req.teacher) {
+        participantTeacher = req.teacher.id;
+
+        if (
+          meeting.participants.teachers.filter((participant) => {
+            return participant.teacher.toString() === participantTeacher;
+          }).length > 0
+        ) {
+          return res.status(400).json({ msg: 'Jau dalyvaujate susitikime' });
+        }
+
+        meeting.participants.teachers.push({ teacher: participantTeacher });
+        await meeting.save();
+      }
+
+      // Participant is parent
+      if (req.parent) {
+        participantParent = req.parent.id;
+
+        if (
+          meeting.participants.parents.filter((participant) => {
+            return participant.parent.toString() === participantParent;
+          }).length > 0
+        ) {
+          return res.status(400).json({ msg: 'Jau dalyvaujate susitikime' });
+        }
+
+        meeting.participants.parents.push({ parent: participantParent });
+        await meeting.save();
+      }
+
+      res.json(meeting.participants);
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send('Server Error');
+    }
+  }
+);
+
 module.exports = router;
