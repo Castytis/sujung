@@ -27,11 +27,13 @@ const Register = () => {
         <Row>
           <Col className='p-5'>
             <h3 className='text-center'>Registracija</h3>
+
             <h6 className='pt-5'>Registruojuosi kaip</h6>
             <Button
               variant='warning'
               className='m-3'
               onClick={userIsTeacherHandler}
+              disabled={isTeacher}
             >
               Mokytojas
             </Button>
@@ -39,9 +41,11 @@ const Register = () => {
               variant='warning'
               className='m-3'
               onClick={userIsParentHandler}
+              disabled={!isTeacher}
             >
               Globėjas
             </Button>
+
             {isTeacher ? (
               <Form>
                 <Form.Group className='mb-3' controlId='emailInput'>
