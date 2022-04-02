@@ -19,14 +19,18 @@ const ParentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  childName: {
-    type: [String],
-    required: true,
-  },
-  childSurname: {
-    type: [String],
-    required: true,
-  },
+  children: [
+    {
+      childName: {
+        type: String,
+        required: true,
+      },
+      childSurname: {
+        type: String,
+        required: true,
+      },
+    },
+  ],
 });
 
 const Parent = mongoose.model('parent', ParentSchema);

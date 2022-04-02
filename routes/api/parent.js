@@ -21,8 +21,6 @@ router.post(
       'password',
       'Slaptažodis turi būti netrumpesnis nei 6 simboliai'
     ).isLength({ min: 6 }),
-    body('childName', 'Įveskite vaiko vardą ir pavardę.').not().isEmpty(),
-    body('childSurname', 'Įveskite vaiko vardą ir pavardę.').not().isEmpty(),
   ],
   async (req, res) => {
     const errors = validationResult(req);
@@ -30,8 +28,7 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name, surname, email, password, childName, childSurname } =
-      req.body;
+    const { name, surname, email, password, children } = req.body;
 
     try {
       let parent = await Parent.findOne({ email: email });
@@ -49,8 +46,7 @@ router.post(
         surname,
         email,
         password,
-        childName,
-        childSurname,
+        children,
       });
 
       const salt = await bcrypt.genSalt(10);
