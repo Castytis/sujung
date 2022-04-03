@@ -1,13 +1,39 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
+// Styles
 const Styles = styled.div`
   h6 {
     display: inline-block;
   }
   max-width: 560px;
   margin: auto;
+`;
+
+const CancelLink = styled(Link)`
+  text-decoration: none;
+  color: white;
+  &:hover {
+    color: black;
+  }
+`;
+
+const AcceptLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+  &:hover {
+    color: white;
+  }
+`;
+
+const StyledButton = styled(Button)`
+  color: black;
+  &:hover {
+    color: white;
+    background-color: #fc7b03;
+  }
 `;
 
 const Register = () => {
@@ -29,22 +55,22 @@ const Register = () => {
             <h3 className='text-center'>Registracija</h3>
 
             <h6 className='pt-5'>Registruojuosi kaip</h6>
-            <Button
+            <StyledButton
               variant='warning'
               className='m-3'
               onClick={userIsTeacherHandler}
               disabled={isTeacher}
             >
               Mokytojas
-            </Button>
-            <Button
+            </StyledButton>
+            <StyledButton
               variant='warning'
               className='m-3'
               onClick={userIsParentHandler}
               disabled={!isTeacher}
             >
               Globėjas
-            </Button>
+            </StyledButton>
 
             {isTeacher ? (
               <Form>
@@ -77,10 +103,10 @@ const Register = () => {
                   <Form.Control type='text' placeholder='Klasės' />
                 </Form.Group>
                 <Button variant='warning' className='float-start'>
-                  Registruotis
+                  <AcceptLink to='/'>Registruotis</AcceptLink>
                 </Button>
                 <Button variant='danger' className='float-end'>
-                  Atšaukti
+                  <CancelLink to='/'>Atšaukti</CancelLink>
                 </Button>
               </Form>
             ) : (
@@ -114,10 +140,10 @@ const Register = () => {
                   <Form.Control type='text' placeholder='Vaiko pavardė' />
                 </Form.Group>
                 <Button variant='warning' className='float-start'>
-                  Registruotis
+                  <AcceptLink to='/'>Registruotis</AcceptLink>
                 </Button>
                 <Button variant='danger' className='float-end'>
-                  Atšaukti
+                  <CancelLink to='/'>Atšaukti</CancelLink>
                 </Button>
               </Form>
             )}
