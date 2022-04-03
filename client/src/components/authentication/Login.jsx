@@ -37,7 +37,9 @@ const StyledButton = styled(Button)`
 `;
 
 const Login = () => {
-  const [isTeacher, setIsTeacher] = useState();
+  const [isTeacher, setIsTeacher] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
   const userIsTeacherHandler = () => {
     setIsTeacher(true);
@@ -45,6 +47,19 @@ const Login = () => {
 
   const userIsParentHandler = () => {
     setIsTeacher(false);
+  };
+
+  const emailChangeHandler = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const passwordChangeHandler = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const loginHandler = (event) => {
+    event.preventDefault();
+    console.log(isTeacher + ' ' + email + ' ' + password);
   };
 
   return (
@@ -73,14 +88,29 @@ const Login = () => {
             <Form>
               <Form.Group className='mb-3' controlId='emailInput'>
                 <Form.Label className='text-center'>El. Paštas</Form.Label>
-                <Form.Control type='email' placeholder='El. Paštas' />
+                <Form.Control
+                  type='email'
+                  value={email}
+                  onChange={emailChangeHandler}
+                  placeholder='El. Paštas'
+                />
               </Form.Group>
               <Form.Group className='mb-3' controlId='passwordInput'>
                 <Form.Label>Slaptažodis</Form.Label>
-                <Form.Control type='password' placeholder='Slaptažodis' />
+                <Form.Control
+                  type='password'
+                  value={password}
+                  onChange={passwordChangeHandler}
+                  placeholder='Slaptažodis'
+                />
               </Form.Group>
-              <Button variant='warning' className='float-start'>
-                <AcceptLink to='/'>Prisijungti</AcceptLink>
+              <Button
+                onClick={loginHandler}
+                variant='warning'
+                type='submit'
+                className='float-start'
+              >
+                <AcceptLink to='#'>Prisijungti</AcceptLink>
               </Button>
               <Button variant='danger' className='float-end'>
                 <CancelLink to='/'>Atšaukti</CancelLink>

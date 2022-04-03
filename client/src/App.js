@@ -6,8 +6,8 @@ import './App.css';
 import Landing from './components/layout/Landing';
 import Layout from './components/layout/Layout';
 import NavigationBar from './components/layout/NavigationBar';
-import Login from './components/auth/Login';
-import Register from './components/auth/Register';
+import Login from './components/authentication/Login';
+import Register from './components/authentication/Register';
 
 function App() {
   return (
