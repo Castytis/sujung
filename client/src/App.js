@@ -8,12 +8,14 @@ import Layout from './components/layout/Layout';
 import NavigationBar from './components/layout/NavigationBar';
 import Login from './components/authentication/Login';
 import Register from './components/authentication/Register';
+import ErrorAlert from './components/error/ErrorAlert';
 
 function App() {
   return (
     <Fragment>
       <BrowserRouter>
         <NavigationBar />
+        <ErrorAlert />
         <Layout>
           <Routes>
             <Route path='/' element={<Landing />} />

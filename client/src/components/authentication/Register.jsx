@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
-
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+
+import { setError } from '../../store/actions/error-action';
 
 // Styles
 const Styles = styled.div`
@@ -48,6 +50,8 @@ const Register = () => {
   const [classes, setClasses] = useState('');
   const [childName, setChildName] = useState('');
   const [childSurname, setChildSurname] = useState('');
+
+  const dispatch = useDispatch();
 
   const userIsTeacherHandler = () => {
     setIsTeacher(true);
@@ -97,6 +101,7 @@ const Register = () => {
     event.preventDefault();
 
     if (isTeacher) {
+      dispatch(setError('123'));
     }
 
     if (!isTeacher) {
