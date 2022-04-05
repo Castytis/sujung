@@ -7,7 +7,7 @@ export default function(state = initialState, action) {
     case 'GET_ALL_TEACHERS':
       return {
         ...state,
-        teachers: payload,
+        teachers: action.payload,
       };
     default:
       return state;

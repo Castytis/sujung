@@ -12,7 +12,7 @@ const Teacher = require('../../models/Teacher');
 // Get authenticated teacher
 router.get('/', authTeacher, async (req, res) => {
   try {
-    const teacher = await Teacher.findById(req.teacher.id).select('-password');
+    const teacher = await Teacher.findById(req.teacher_.id).select('-password');
     res.json(teacher);
   } catch (error) {
     console.error(error);
