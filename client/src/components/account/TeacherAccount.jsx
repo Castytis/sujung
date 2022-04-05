@@ -2,9 +2,10 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentTeacher } from '../../store/actions/teacher-action';
 import { Card, ListGroup, ListGroupItem, Col, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const TeacherAccount = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const currentTeacher = useSelector((state) => state.teachers.teacher);
 
