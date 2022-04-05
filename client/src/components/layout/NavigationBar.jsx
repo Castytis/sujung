@@ -82,7 +82,7 @@ const NavigationBar = () => {
               <Nav className='ms-auto'>
                 <Nav.Item>
                   <Nav.Link>
-                    <StyledLink to='#'>Mokytojai</StyledLink>
+                    <StyledLink to='/teachers'>Mokytojai</StyledLink>
                   </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
@@ -121,7 +121,7 @@ const NavigationBar = () => {
               <Nav className='ms-auto'>
                 <Nav.Item>
                   <Nav.Link>
-                    <StyledLink to='#'>Mokytojai</StyledLink>
+                    <StyledLink to='/teachers'>Mokytojai</StyledLink>
                   </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>

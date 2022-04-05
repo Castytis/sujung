@@ -21,7 +21,7 @@ export default function(state = initialState, action) {
         parent: action.payload,
       };
     case 'REGISTER_PARENT_FAIL':
-    case 'LOGIN_FAIL':
+    case 'LOGIN_PARENT_FAIL':
     case 'LOGOUT_PARENT':
     case 'AUTH_PARENT_ERROR':
       localStorage.removeItem('token');

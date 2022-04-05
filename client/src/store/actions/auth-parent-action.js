@@ -14,7 +14,7 @@ export const registerParent = (formData) => {
       dispatch(loadParent());
     } catch (error) {
       dispatch({
-        type: 'REGISTER_FAIL',
+        type: 'REGISTER_PARENT_FAIL',
       });
     }
   };
@@ -33,7 +33,7 @@ export const loginParent = (formData) => {
       dispatch(loadParent());
     } catch (error) {
       dispatch({
-        type: 'LOGIN_FAIL',
+        type: 'LOGIN_PARENT_FAIL',
       });
     }
   };
