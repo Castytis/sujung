@@ -1,43 +1,42 @@
 import React, { useEffect } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { getTeacherById } from '../../store/actions/teacher-action';
+import { getCurrentTeacher } from '../../store/actions/teacher-action';
 import { Card, ListGroup, ListGroupItem, Col, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
-const Teacher = () => {
-  let teacherId = useParams();
-  const navigate = useNavigate();
+const TeacherAccount = () => {
   const dispatch = useDispatch();
-  const teacher = useSelector((state) => state.teachers.teacher);
+  const currentTeacher = useSelector((state) => state.teachers.teacher);
 
   useEffect(() => {
-    dispatch(getTeacherById(teacherId.id));
-  }, [getTeacherById]);
+    dispatch(getCurrentTeacher());
+  }, [getCurrentTeacher]);
 
-  if (teacher !== null) {
+  if (currentTeacher !== null) {
     return (
       <Col className='d-flex justify-content-center mt-5'>
-        <Card style={{ width: '22rem' }}>
+        <Card style={{ width: '26rem' }}>
           <Card.Body>
-            <Card.Title>{teacher.name + ' ' + teacher.surname}</Card.Title>
+            <Card.Title>
+              {currentTeacher.name + ' ' + currentTeacher.surname}
+            </Card.Title>
           </Card.Body>
           <ListGroup className='list-group-flush'>
             <ListGroupItem>
               <span className='text-muted'>Mokamasis dalykas:</span>{' '}
-              {teacher.subject}.
+              {currentTeacher.subject}.
             </ListGroupItem>
             <ListGroupItem>
               <span className='text-muted'>Priklausančios klasės:</span>{' '}
-              {teacher.classes}.
+              {currentTeacher.classes}.
             </ListGroupItem>
             <ListGroupItem>
-              <span className='text-muted'>El. paštas:</span> {teacher.email}.
+              <span className='text-muted'>El. paštas:</span>{' '}
+              {currentTeacher.email}.
             </ListGroupItem>
           </ListGroup>
           <Card.Body>
-            <Button variant='outline-info' onClick={() => navigate(-1)}>
-              Grįžti atgal
-            </Button>
+            <Button variant='outline-info'>Keisti informaciją</Button>
             <Button variant='btn btn-outline-warning' className='float-end '>
               Mokytojo susitikimai
             </Button>
@@ -48,4 +47,4 @@ const Teacher = () => {
   }
 };
 
-export default Teacher;
+export default TeacherAccount;

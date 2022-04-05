@@ -11,6 +11,7 @@ export default function(state = initialState, action) {
         teachers: action.payload,
       };
     case 'GET_TEACHER_BY_ID':
+    case 'GET_CURRENT_TEACHER':
       return {
         ...state,
         teacher: action.payload,

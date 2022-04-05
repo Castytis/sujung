@@ -92,7 +92,7 @@ const NavigationBar = () => {
                 </Nav.Item>
                 <Nav.Item>
                   <Nav.Link>
-                    <StyledLink to='#'>Paskyra</StyledLink>
+                    <StyledLink to='/teachers/me'>Paskyra</StyledLink>
                   </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>

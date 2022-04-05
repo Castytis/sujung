@@ -15,6 +15,7 @@ import TeacherList from './components/teacher/TeacherList';
 
 import './App.css';
 import Teacher from './components/teacher/Teacher';
+import TeacherAccount from './components/account/TeacherAccount';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -37,6 +38,7 @@ const App = () => {
               <Route path='/register' element={<Register />} />
               <Route path='/login' element={<Login />} />
               <Route path='/teachers' element={<TeacherList />} />
+              <Route path='/teachers/me' element={<TeacherAccount />} />
               <Route path='/teachers/:id' element={<Teacher />} />
             </Routes>
           </Layout>

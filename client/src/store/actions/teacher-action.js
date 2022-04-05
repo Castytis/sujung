@@ -33,3 +33,20 @@ export const getTeacherById = (teacherId) => {
     }
   };
 };
+
+export const getCurrentTeacher = () => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.get('/api/teachers/me');
+
+      dispatch({
+        type: 'GET_CURRENT_TEACHER',
+        payload: res.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: 'TEACHERS_ERROR',
+      });
+    }
+  };
+};
