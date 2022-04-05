@@ -42,116 +42,112 @@ const NavigationBar = () => {
     dispatch(logoutParent());
   };
 
-  const notLoggedInNav = (
-    <Navbar expand='lg'>
-      <Container>
-        <Navbar.Brand>
-          <StyledLink to=''>sujung</StyledLink>
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls='basic-navbar-nav' />
-        <Navbar.Collapse id='basic-navbar-nav'>
-          <Nav className='ms-auto'>
-            <Nav.Item>
-              <Nav.Link>
-                <StyledLink to='login'>Prisijungti</StyledLink>
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link>
-                <StyledLink to='register'>Registruotis</StyledLink>
-              </Nav.Link>
-            </Nav.Item>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-  );
-
-  const teacherNav = (
-    <Navbar expand='lg'>
-      <Container>
-        <Navbar.Brand>
-          <StyledLink to=''>sujung</StyledLink>
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls='basic-navbar-nav' />
-        <Navbar.Collapse id='basic-navbar-nav'>
-          <Nav className='ms-auto'>
-            <Nav.Item>
-              <Nav.Link>
-                <StyledLink to='#'>Mokytojai</StyledLink>
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link>
-                <StyledLink to='#'>Susitikimai</StyledLink>
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link>
-                <StyledLink to='#'>Paskyra</StyledLink>
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link>
-                <StyledLink to='/' onClick={logoutTeacherHandler}>
-                  Atsijungti
-                </StyledLink>
-              </Nav.Link>
-            </Nav.Item>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-  );
-
-  const parentNav = (
-    <Navbar expand='lg'>
-      <Container>
-        <Navbar.Brand>
-          <StyledLink to=''>sujung</StyledLink>
-        </Navbar.Brand>
-        <Navbar.Toggle aria-controls='basic-navbar-nav' />
-        <Navbar.Collapse id='basic-navbar-nav'>
-          <Nav className='ms-auto'>
-            <Nav.Item>
-              <Nav.Link>
-                <StyledLink to='#'>Mokytojai</StyledLink>
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link>
-                <StyledLink to='#'>Susitikimai</StyledLink>
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link>
-                <StyledLink to='#'>Paskyra</StyledLink>
-              </Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link>
-                <StyledLink to='/' onClick={logoutParentHandler}>
-                  Atsijungti
-                </StyledLink>
-              </Nav.Link>
-            </Nav.Item>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
-  );
-
-  let showNav;
-
-  if (teacherState.teacher === null && parentState.parent !== null) {
-    showNav = parentNav;
-  } else if (teacherState.teacher !== null && parentState.parent === null) {
-    showNav = teacherNav;
+  if (!parentState.isAuth && !teacherState.isAuth) {
+    return (
+      <Styles>
+        <Navbar expand='lg'>
+          <Container>
+            <Navbar.Brand>
+              <StyledLink to=''>sujung</StyledLink>
+            </Navbar.Brand>
+            <Navbar.Toggle aria-controls='basic-navbar-nav' />
+            <Navbar.Collapse id='basic-navbar-nav'>
+              <Nav className='ms-auto'>
+                <Nav.Item>
+                  <Nav.Link>
+                    <StyledLink to='login'>Prisijungti</StyledLink>
+                  </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link>
+                    <StyledLink to='register'>Registruotis</StyledLink>
+                  </Nav.Link>
+                </Nav.Item>
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
+      </Styles>
+    );
+  } else if (!parentState.isAuth && teacherState.isAuth) {
+    return (
+      <Styles>
+        <Navbar expand='lg'>
+          <Container>
+            <Navbar.Brand>
+              <StyledLink to=''>sujung</StyledLink>
+            </Navbar.Brand>
+            <Navbar.Toggle aria-controls='basic-navbar-nav' />
+            <Navbar.Collapse id='basic-navbar-nav'>
+              <Nav className='ms-auto'>
+                <Nav.Item>
+                  <Nav.Link>
+                    <StyledLink to='#'>Mokytojai</StyledLink>
+                  </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link>
+                    <StyledLink to='#'>Susitikimai</StyledLink>
+                  </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link>
+                    <StyledLink to='#'>Paskyra</StyledLink>
+                  </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link>
+                    <StyledLink to='/' onClick={logoutTeacherHandler}>
+                      Atsijungti
+                    </StyledLink>
+                  </Nav.Link>
+                </Nav.Item>
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
+      </Styles>
+    );
   } else {
-    showNav = notLoggedInNav;
+    return (
+      <Styles>
+        <Navbar expand='lg'>
+          <Container>
+            <Navbar.Brand>
+              <StyledLink to=''>sujung</StyledLink>
+            </Navbar.Brand>
+            <Navbar.Toggle aria-controls='basic-navbar-nav' />
+            <Navbar.Collapse id='basic-navbar-nav'>
+              <Nav className='ms-auto'>
+                <Nav.Item>
+                  <Nav.Link>
+                    <StyledLink to='#'>Mokytojai</StyledLink>
+                  </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link>
+                    <StyledLink to='#'>Susitikimai</StyledLink>
+                  </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link>
+                    <StyledLink to='#'>Paskyra</StyledLink>
+                  </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link>
+                    <StyledLink to='/' onClick={logoutParentHandler}>
+                      Atsijungti
+                    </StyledLink>
+                  </Nav.Link>
+                </Nav.Item>
+              </Nav>
+            </Navbar.Collapse>
+          </Container>
+        </Navbar>
+      </Styles>
+    );
   }
-
-  return <Styles>{showNav}</Styles>;
 };
 
 export default NavigationBar;
