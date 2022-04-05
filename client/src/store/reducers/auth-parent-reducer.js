@@ -7,7 +7,7 @@ const initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case 'REGISTER_PARENT_SUCCESS':
-    case 'LOGIN_SUCCESS':
+    case 'LOGIN_PARENT_SUCCESS':
       localStorage.setItem('token', action.payload.token);
       return {
         ...state,
@@ -20,7 +20,7 @@ export default function(state = initialState, action) {
         isAuth: true,
         parent: action.payload,
       };
-    case 'REGISTER_FAIL':
+    case 'REGISTER_PARENT_FAIL':
     case 'LOGIN_FAIL':
     case 'LOGOUT_PARENT':
     case 'AUTH_PARENT_ERROR':

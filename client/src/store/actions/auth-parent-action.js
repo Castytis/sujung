@@ -7,14 +7,12 @@ export const registerParent = (formData) => {
       const res = await axios.post('/api/parents', formData);
 
       dispatch({
-        type: 'REGISTER_SUCCESS',
+        type: 'REGISTER_PARENT_SUCCESS',
         payload: res.data,
       });
 
       dispatch(loadParent());
     } catch (error) {
-      const errors = error.response.data.errors;
-
       dispatch({
         type: 'REGISTER_FAIL',
       });
@@ -28,14 +26,12 @@ export const loginParent = (formData) => {
       const res = await axios.post('/api/auth-parent', formData);
 
       dispatch({
-        type: 'LOGIN_SUCCESS',
+        type: 'LOGIN_PARENT_SUCCESS',
         payload: res.data,
       });
 
       dispatch(loadParent());
     } catch (error) {
-      const errors = error.response.data.errors;
-
       dispatch({
         type: 'LOGIN_FAIL',
       });

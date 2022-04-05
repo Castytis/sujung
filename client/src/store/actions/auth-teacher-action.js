@@ -7,16 +7,14 @@ export const registerTeacher = (formData) => {
       const res = await axios.post('/api/teachers', formData);
 
       dispatch({
-        type: 'REGISTER_SUCCESS',
+        type: 'REGISTER_TEACHER_SUCCESS',
         payload: res.data,
       });
 
       dispatch(loadTeacher());
     } catch (error) {
-      const errors = error.response.data.errors;
-
       dispatch({
-        type: 'REGISTER_FAIL',
+        type: 'REGISTER_TEACHER_FAIL',
       });
     }
   };
@@ -28,16 +26,14 @@ export const loginTeacher = (formData) => {
       const res = await axios.post('/api/auth-teacher', formData);
 
       dispatch({
-        type: 'LOGIN_SUCCESS',
+        type: 'LOGIN_TEACHER_SUCCESS',
         payload: res.data,
       });
 
       dispatch(loadTeacher());
     } catch (error) {
-      const errors = error.response.data.errors;
-
       dispatch({
-        type: 'LOGIN_FAIL',
+        type: 'LOGIN_TEACHER_FAIL',
       });
     }
   };
