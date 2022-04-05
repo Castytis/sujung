@@ -21,7 +21,6 @@ export const getTeacherById = (teacherId) => {
   return async (dispatch) => {
     try {
       const res = await axios.get(`/api/teachers/${teacherId}`);
-      console.log(res);
 
       dispatch({
         type: 'GET_TEACHER_BY_ID',

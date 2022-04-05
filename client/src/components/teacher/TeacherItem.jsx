@@ -3,7 +3,7 @@ import { Card, Col, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-const AcceptLink = styled(Link)`
+const StyledLink = styled(Link)`
   text-decoration: none;
   color: black;
   &:hover {
@@ -27,9 +27,9 @@ const TeacherItem = (props) => {
             El. paštas {props.teacher.email}
           </Card.Text>
           <Button variant='' className='float-end btn btn-outline-warning'>
-            <AcceptLink to={`/teachers/${props.teacher._id}`}>
+            <StyledLink to={`/teachers/${props.teacher._id}`}>
               Daugiau informacijos
-            </AcceptLink>
+            </StyledLink>
           </Button>
         </Card.Body>
       </Card>
