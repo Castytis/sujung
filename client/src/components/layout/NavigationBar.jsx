@@ -1,7 +1,11 @@
 import React from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+
+import { logoutTeacher } from '../../store/actions/auth-teacher-action';
+import { logoutParent } from '../../store/actions/auth-parent-action';
 
 const Styles = styled.div`
   .navbar {
@@ -25,32 +29,129 @@ const StyledLink = styled(Link)`
 `;
 
 const NavigationBar = () => {
-  return (
-    <Styles>
-      <Navbar expand='lg'>
-        <Container>
-          <Navbar.Brand>
-            <StyledLink to=''>sujung</StyledLink>
-          </Navbar.Brand>
-          <Navbar.Toggle aria-controls='basic-navbar-nav' />
-          <Navbar.Collapse id='basic-navbar-nav'>
-            <Nav className='ms-auto'>
-              <Nav.Item>
-                <Nav.Link>
-                  <StyledLink to='login'>Prisijungti</StyledLink>
-                </Nav.Link>
-              </Nav.Item>
-              <Nav.Item>
-                <Nav.Link>
-                  <StyledLink to='register'>Registruotis</StyledLink>
-                </Nav.Link>
-              </Nav.Item>
-            </Nav>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    </Styles>
+  const teacherState = useSelector((state) => state.authenticateTeacher);
+  const parentState = useSelector((state) => state.authenticateParent);
+
+  const dispatch = useDispatch();
+
+  const logoutTeacherHandler = () => {
+    dispatch(logoutTeacher());
+  };
+
+  const logoutParentHandler = () => {
+    dispatch(logoutParent());
+  };
+
+  const notLoggedInNav = (
+    <Navbar expand='lg'>
+      <Container>
+        <Navbar.Brand>
+          <StyledLink to=''>sujung</StyledLink>
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls='basic-navbar-nav' />
+        <Navbar.Collapse id='basic-navbar-nav'>
+          <Nav className='ms-auto'>
+            <Nav.Item>
+              <Nav.Link>
+                <StyledLink to='login'>Prisijungti</StyledLink>
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link>
+                <StyledLink to='register'>Registruotis</StyledLink>
+              </Nav.Link>
+            </Nav.Item>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
   );
+
+  const teacherNav = (
+    <Navbar expand='lg'>
+      <Container>
+        <Navbar.Brand>
+          <StyledLink to=''>sujung</StyledLink>
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls='basic-navbar-nav' />
+        <Navbar.Collapse id='basic-navbar-nav'>
+          <Nav className='ms-auto'>
+            <Nav.Item>
+              <Nav.Link>
+                <StyledLink to='#'>Mokytojai</StyledLink>
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link>
+                <StyledLink to='#'>Susitikimai</StyledLink>
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link>
+                <StyledLink to='#'>Paskyra</StyledLink>
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link>
+                <StyledLink to='/' onClick={logoutTeacherHandler}>
+                  Atsijungti
+                </StyledLink>
+              </Nav.Link>
+            </Nav.Item>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
+
+  const parentNav = (
+    <Navbar expand='lg'>
+      <Container>
+        <Navbar.Brand>
+          <StyledLink to=''>sujung</StyledLink>
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls='basic-navbar-nav' />
+        <Navbar.Collapse id='basic-navbar-nav'>
+          <Nav className='ms-auto'>
+            <Nav.Item>
+              <Nav.Link>
+                <StyledLink to='#'>Mokytojai</StyledLink>
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link>
+                <StyledLink to='#'>Susitikimai</StyledLink>
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link>
+                <StyledLink to='#'>Paskyra</StyledLink>
+              </Nav.Link>
+            </Nav.Item>
+            <Nav.Item>
+              <Nav.Link>
+                <StyledLink to='/' onClick={logoutParentHandler}>
+                  Atsijungti
+                </StyledLink>
+              </Nav.Link>
+            </Nav.Item>
+          </Nav>
+        </Navbar.Collapse>
+      </Container>
+    </Navbar>
+  );
+
+  let showNav;
+
+  if (teacherState.teacher === null && parentState.parent !== null) {
+    showNav = parentNav;
+  } else if (teacherState.teacher !== null && parentState.parent === null) {
+    showNav = teacherNav;
+  } else {
+    showNav = notLoggedInNav;
+  }
+
+  return <Styles>{showNav}</Styles>;
 };
 
 export default NavigationBar;

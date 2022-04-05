@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
 
 import './App.css';
@@ -8,24 +8,39 @@ import Layout from './components/layout/Layout';
 import NavigationBar from './components/layout/NavigationBar';
 import Login from './components/authentication/Login';
 import Register from './components/authentication/Register';
-import ErrorAlert from './components/error/ErrorAlert';
+import { Provider } from 'react-redux';
 
-function App() {
+import store from './store/store';
+import setAuthToken from './token/setAuthToken';
+import { loadTeacher } from './store/actions/auth-teacher-action';
+import { loadParent } from './store/actions/auth-parent-action';
+
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
+
+const App = () => {
+  useEffect(() => {
+    store.dispatch(loadTeacher());
+    store.dispatch(loadParent());
+  }, []);
+
   return (
     <Fragment>
-      <BrowserRouter>
-        <NavigationBar />
-        <ErrorAlert />
-        <Layout>
-          <Routes>
-            <Route path='/' element={<Landing />} />
-            <Route path='/register' element={<Register />} />
-            <Route path='/login' element={<Login />} />
-          </Routes>
-        </Layout>
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <NavigationBar />
+          <Layout>
+            <Routes>
+              <Route path='/' element={<Landing />} />
+              <Route path='/register' element={<Register />} />
+              <Route path='/login' element={<Login />} />
+            </Routes>
+          </Layout>
+        </BrowserRouter>
+      </Provider>
     </Fragment>
   );
-}
+};
 
 export default App;

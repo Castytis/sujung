@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+
+import { loginTeacher } from '../../store/actions/auth-teacher-action';
+import { loginParent } from '../../store/actions/auth-parent-action';
 
 // Styles
 const Styles = styled.div`
@@ -41,6 +45,8 @@ const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
+  const dispatch = useDispatch();
+
   const userIsTeacherHandler = () => {
     setIsTeacher(true);
   };
@@ -57,9 +63,14 @@ const Login = () => {
     setPassword(event.target.value);
   };
 
-  const loginHandler = (event) => {
+  const loginTeacherHandler = (event) => {
     event.preventDefault();
-    console.log(isTeacher + ' ' + email + ' ' + password);
+    dispatch(loginTeacher({ email, password }));
+  };
+
+  const loginParentHandler = (event) => {
+    event.preventDefault();
+    dispatch(loginParent({ email, password }));
   };
 
   return (
@@ -105,7 +116,7 @@ const Login = () => {
                 />
               </Form.Group>
               <Button
-                onClick={loginHandler}
+                onClick={isTeacher ? loginTeacherHandler : loginParentHandler}
                 variant='warning'
                 type='submit'
                 className='float-start'

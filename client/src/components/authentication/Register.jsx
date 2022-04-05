@@ -4,7 +4,8 @@ import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
-import { setError } from '../../store/actions/error-action';
+import { registerTeacher } from '../../store/actions/auth-teacher-action';
+import { registerParent } from '../../store/actions/auth-parent-action';
 
 // Styles
 const Styles = styled.div`
@@ -101,10 +102,22 @@ const Register = () => {
     event.preventDefault();
 
     if (isTeacher) {
-      dispatch(setError('123'));
+      dispatch(
+        registerTeacher({ email, password, name, surname, subject, classes })
+      );
     }
 
     if (!isTeacher) {
+      dispatch(
+        registerParent({
+          email,
+          password,
+          name,
+          surname,
+          childName,
+          childSurname,
+        })
+      );
     }
   };
 
