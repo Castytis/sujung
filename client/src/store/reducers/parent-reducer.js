@@ -8,11 +8,13 @@ export default function(state = initialState, action) {
     case 'GET_CURRENT_PARENT':
       return {
         ...state,
-        teacher: action.payload,
+        parent: action.payload,
       };
     case 'PARENT_ERROR':
       return {
         ...state,
       };
+    default:
+      return state;
   }
 }

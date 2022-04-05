@@ -3,7 +3,7 @@ import axios from 'axios';
 export const getCurrentParent = () => {
   return async (dispatch) => {
     try {
-      const res = await axios.get('/apiparents/me');
+      const res = await axios.get('/api/parents/me');
 
       dispatch({
         type: 'GET_CURRENT_PARENT',
