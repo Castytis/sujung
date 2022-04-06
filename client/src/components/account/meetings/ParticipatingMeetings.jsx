@@ -11,7 +11,9 @@ const ParticipatingMeetings = (props) => {
         {props.meeting.map((meeting, index) => (
           <Accordion.Item eventKey={index}>
             <Accordion.Header>{meeting.title}</Accordion.Header>
-            <Accordion.Body>Data ir laikas: {meeting.date}</Accordion.Body>
+            <Accordion.Body>
+              Data ir laikas: {meeting.date} {meeting.time}
+            </Accordion.Body>
             <Accordion.Body>Vieta: {meeting.location}</Accordion.Body>
             <Accordion.Body>Tema: {meeting.subject}</Accordion.Body>
           </Accordion.Item>

@@ -19,7 +19,11 @@ const MeetingSchema = new mongoose.Schema({
     type: String,
   },
   date: {
-    type: Date,
+    type: String,
+    require: true,
+  },
+  time: {
+    type: String,
     require: true,
   },
   location: {

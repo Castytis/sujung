@@ -23,6 +23,7 @@ const MeetingItem = (props) => {
           <ListGroupItem>{props.meeting.subject}</ListGroupItem>
           <ListGroupItem>{props.meeting.location}</ListGroupItem>
           <ListGroupItem>{props.meeting.date}</ListGroupItem>
+          <ListGroupItem>{props.meeting.time}</ListGroupItem>
         </ListGroup>
         <Card.Body>
           <Button variant='outline-info'>

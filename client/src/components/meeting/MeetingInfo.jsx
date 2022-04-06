@@ -47,6 +47,7 @@ const MeetingInfo = () => {
           <ListGroup className='list-group-flush'>
             <ListGroupItem>{meeting.location}</ListGroupItem>
             <ListGroupItem>{meeting.date}</ListGroupItem>
+            <ListGroupItem>{meeting.time}</ListGroupItem>
           </ListGroup>
           <Card.Header>
             Mokytojai dalyviai: {teacherParticipants.length}

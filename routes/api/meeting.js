@@ -28,7 +28,7 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { title, subject, date, location, text } = req.body;
+    const { title, subject, date, time, location, text } = req.body;
 
     try {
       const id = req.teacher.id;
@@ -38,6 +38,7 @@ router.post(
         title,
         subject,
         date,
+        time,
         location,
         text,
       });
