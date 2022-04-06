@@ -37,7 +37,7 @@ export const getMeetingById = (meetingId) => {
 export const addParticipant = (meetingId) => {
   return async (dispatch) => {
     try {
-      const res = await axios.put(`/api/meetings/${meetingId}`);
+      const res = await axios.put(`/api/meetings/participate/${meetingId}`);
 
       dispatch({
         type: 'ADD_PARTICIPANT',

@@ -211,7 +211,7 @@ router.put(
         await meeting.save();
       }
 
-      res.json(meeting.participants);
+      res.json(meeting);
     } catch (error) {
       console.error(error.message);
       res.status(500).send('Server Error');

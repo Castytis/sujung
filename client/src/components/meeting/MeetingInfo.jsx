@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getMeetingById } from '../../store/actions/meeting-action';
 import { Card, ListGroup, ListGroupItem, Col, Button } from 'react-bootstrap';
 import MeetingParticipants from './MeetingParticipants';
+import { addParticipant } from '../../store/actions/meeting-action';
 
 const MeetingInfo = () => {
   let meetingId = useParams();
@@ -11,9 +12,16 @@ const MeetingInfo = () => {
   const dispatch = useDispatch();
   const meeting = useSelector((state) => state.meetings.meeting);
 
+  const [participateButton, setParticipateButton] = useState(false);
+
   useEffect(() => {
     dispatch(getMeetingById(meetingId.id));
   }, [getMeetingById]);
+
+  const participationHandler = () => {
+    dispatch(addParticipant(meetingId.id));
+    setParticipateButton(true);
+  };
 
   if (meeting !== null) {
     const teacherParticipants = meeting.participants.teachers;
@@ -62,9 +70,19 @@ const MeetingInfo = () => {
             <Button variant='outline-info' onClick={() => navigate(-1)}>
               Grįžti atgal
             </Button>
-            <Button variant='btn btn-outline-success' className='float-end '>
-              Dalyvauti
-            </Button>
+            {!participateButton ? (
+              <Button
+                variant='btn btn-outline-success'
+                className='float-end'
+                onClick={participationHandler}
+              >
+                Dalyvauti
+              </Button>
+            ) : (
+              <Button variant='btn btn-danger' className='float-end'>
+                Išeiti
+              </Button>
+            )}
           </Card.Body>
         </Card>
       </Col>
