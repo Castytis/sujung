@@ -34,7 +34,9 @@ const MeetingInfo = () => {
             <ListGroupItem>{meeting.location}</ListGroupItem>
             <ListGroupItem>{meeting.date}</ListGroupItem>
           </ListGroup>
-          <Card.Header>Mokytojai dalyviai</Card.Header>
+          <Card.Header>
+            Mokytojai dalyviai: {teacherParticipants.length}
+          </Card.Header>
           <ListGroup className='list-group-flush'>
             {teacherParticipants.map((participant) => (
               <MeetingParticipants
@@ -44,7 +46,9 @@ const MeetingInfo = () => {
               />
             ))}
           </ListGroup>
-          <Card.Header>Globėjai dalyviai</Card.Header>
+          <Card.Header>
+            Globėjai dalyviai: {parentParticipants.length}
+          </Card.Header>
           <ListGroup className='list-group-flush'>
             {parentParticipants.map((participant) => (
               <MeetingParticipants
@@ -54,6 +58,14 @@ const MeetingInfo = () => {
               />
             ))}
           </ListGroup>
+          <Card.Body>
+            <Button variant='outline-info' onClick={() => navigate(-1)}>
+              Grįžti atgal
+            </Button>
+            <Button variant='btn btn-outline-success' className='float-end '>
+              Dalyvauti
+            </Button>
+          </Card.Body>
         </Card>
       </Col>
     );
