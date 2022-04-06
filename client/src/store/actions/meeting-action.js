@@ -33,3 +33,20 @@ export const getMeetingById = (meetingId) => {
     }
   };
 };
+
+export const addParticipant = (meetingId) => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.put(`/api/meetings/${meetingId}`);
+
+      dispatch({
+        type: 'ADD_PARTICIPANT',
+        payload: res.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: 'MEETINGS_ERROR',
+      });
+    }
+  };
+};

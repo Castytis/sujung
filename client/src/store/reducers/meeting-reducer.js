@@ -15,6 +15,11 @@ export default function(state = initialState, action) {
         ...state,
         meeting: action.payload,
       };
+    case 'ADD_PARTICIPANT':
+      return {
+        ...state,
+        meeting: action.payload,
+      };
     case 'MEETINGS_ERROR':
       return {
         ...state,
