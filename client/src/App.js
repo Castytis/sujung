@@ -18,6 +18,7 @@ import Teacher from './components/teacher/Teacher';
 import TeacherAccount from './components/account/TeacherAccount';
 import Parent from './components/parent/Parent';
 import ParentAccount from './components/account/ParentAccount';
+import MeetingList from './components/meeting/MeetingList';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -43,6 +44,7 @@ const App = () => {
               <Route path='/teachers/me' element={<TeacherAccount />} />
               <Route path='/teachers/:id' element={<Teacher />} />
               <Route path='/parents/me' element={<ParentAccount />} />
+              <Route path='/meetings' element={<MeetingList />} />
             </Routes>
           </Layout>
         </BrowserRouter>

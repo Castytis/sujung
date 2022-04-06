@@ -56,7 +56,7 @@ router.post(
 // Get all meetings
 router.get('/', [authTeacher, authParent], async (req, res) => {
   try {
-    const meetings = await Meeting.find();
+    const meetings = await Meeting.find().populate('organiser', ['name']);
     res.json(meetings);
   } catch (error) {
     console.error(error.message);

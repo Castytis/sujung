@@ -87,7 +87,7 @@ const NavigationBar = () => {
                 </Nav.Item>
                 <Nav.Item>
                   <Nav.Link>
-                    <StyledLink to='#'>Susitikimai</StyledLink>
+                    <StyledLink to='meetings'>Susitikimai</StyledLink>
                   </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
@@ -126,7 +126,7 @@ const NavigationBar = () => {
                 </Nav.Item>
                 <Nav.Item>
                   <Nav.Link>
-                    <StyledLink to='#'>Susitikimai</StyledLink>
+                    <StyledLink to='/meetings'>Susitikimai</StyledLink>
                   </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
