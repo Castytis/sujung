@@ -1,15 +1,19 @@
 import React from 'react';
 import { Card, Accordion } from 'react-bootstrap';
 
-const OrganisedMeetings = () => {
+const OrganisedMeetings = (props) => {
   return (
     <Card style={{ width: '26rem' }}>
       <Card.Title className='text-center'>Organizuojami susitikimai</Card.Title>
       <Accordion defaultActiveKey='0' flush>
-        <Accordion.Item eventKey='0'>
-          <Accordion.Header>Accordion Item #1</Accordion.Header>
-          <Accordion.Body></Accordion.Body>
-        </Accordion.Item>
+        {props.meeting.map((meeting, index) => (
+          <Accordion.Item eventKey={index}>
+            <Accordion.Header>{meeting.title}</Accordion.Header>
+            <Accordion.Body>Data ir laikas: {meeting.date}</Accordion.Body>
+            <Accordion.Body>Vieta: {meeting.location}</Accordion.Body>
+            <Accordion.Body>Tema: {meeting.subject}</Accordion.Body>
+          </Accordion.Item>
+        ))}
       </Accordion>
     </Card>
   );

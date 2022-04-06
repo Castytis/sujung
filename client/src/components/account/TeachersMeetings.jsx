@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { Row, Col } from 'react-bootstrap';
+import { Row, Col, Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentUsersOrganisedMeetings } from '../../store/actions/meeting-action';
 import { getCurrentParticipantsMeetings } from '../../store/actions/meeting-action';
@@ -20,12 +20,27 @@ const TeachersMeetings = () => {
   }, [getCurrentParticipantsMeetings]);
 
   return (
-    <Row xs={1} md={2} className='g-4 m-5'>
-      <Col className='d-flex justify-content-center mt-5'>
-        <OrganisedMeetings />
+    <Row xs={1} md={2} className='g-4 m-5 '>
+      <Col className='justify-content-center mt-5'>
+        {!organisedMeetings.length > 0 ? (
+          <Card.Title className='text-center' style={{ width: '26rem' }}>
+            Orgazijuomų susitikimų nėra
+          </Card.Title>
+        ) : (
+          <OrganisedMeetings meeting={organisedMeetings} />
+        )}
       </Col>
-      <Col className='d-flex justify-content-center mt-5'>
-        <ParticipatingMeetings />
+
+      <Col className='justify-content-center mt-5'>
+        <Card style={{ width: '26rem' }}>
+          {!participantMeetings.length > 0 ? (
+            <Card.Title className='text-center' style={{ width: '26rem' }}>
+              Nėra susitikimų, kuriuose dalyvaujate
+            </Card.Title>
+          ) : (
+            <ParticipatingMeetings meeting={participantMeetings} />
+          )}
+        </Card>
       </Col>
     </Row>
   );
