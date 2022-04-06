@@ -33,14 +33,7 @@ const MeetingInfo = () => {
             <ListGroupItem>{meeting.date}</ListGroupItem>
           </ListGroup>
           <Card.Header>Dalyviai</Card.Header>
-          <ListGroup className='list-group-flush'>
-            {/* {meeting.participants.teachers.map((participant) => {
-              <MeetingParticipants
-                key={participant._id}
-                participant={participant}
-              />;
-            })} */}
-          </ListGroup>
+          <ListGroup className='list-group-flush'></ListGroup>
         </Card>
       </Col>
     );

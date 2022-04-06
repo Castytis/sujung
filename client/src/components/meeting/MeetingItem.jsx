@@ -30,7 +30,7 @@ const MeetingItem = (props) => {
               Daugiau informacijos
             </StyledLink>
           </Button>
-          <Button variant='btn btn-outline-warning' className='float-end '>
+          <Button variant='btn btn-outline-success' className='float-end '>
             Dalyvauti
           </Button>
         </Card.Body>
