@@ -86,7 +86,9 @@ router.get('/me', authTeacher, async (req, res) => {
 router.get('/:meeting_id', [authTeacher, authParent], async (req, res) => {
   try {
     const id = req.params.meeting_id;
-    const meeting = await Meeting.findOne({ _id: id });
+    const meeting = await Meeting.findOne({ _id: id }).populate('organiser', [
+      'name',
+    ]);
 
     if (!meeting) {
       return res.status(400).json({ msg: 'Susitikimas nerastas' });

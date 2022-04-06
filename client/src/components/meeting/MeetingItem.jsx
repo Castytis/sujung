@@ -1,5 +1,15 @@
 import React from 'react';
 import { Col, ListGroup, ListGroupItem, Card, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+  &:hover {
+    color: white;
+  }
+`;
 
 const MeetingItem = (props) => {
   return (
@@ -15,7 +25,11 @@ const MeetingItem = (props) => {
           <ListGroupItem>{props.meeting.date}</ListGroupItem>
         </ListGroup>
         <Card.Body>
-          <Button variant='outline-info'>Informacija</Button>
+          <Button variant='outline-info'>
+            <StyledLink to={`/meetings/${props.meeting._id}`}>
+              Daugiau informacijos
+            </StyledLink>
+          </Button>
           <Button variant='btn btn-outline-warning' className='float-end '>
             Dalyvauti
           </Button>

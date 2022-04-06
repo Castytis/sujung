@@ -20,7 +20,7 @@ export const getAllMeetings = () => {
 export const getMeetingById = (meetingId) => {
   return async (dispatch) => {
     try {
-      const res = await axios.get(`/api/meetings/:meeting_id`);
+      const res = await axios.get(`/api/meetings/${meetingId}`);
 
       dispatch({
         type: 'GET_MEETING_BY_ID',
