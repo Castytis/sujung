@@ -16,7 +16,10 @@ const MeetingInfo = () => {
   }, [getMeetingById]);
 
   if (meeting !== null) {
-    console.log(meeting.participants.teachers);
+    const teacherParticipants = meeting.participants.teachers;
+    const parentParticipants = meeting.participants.parents;
+    console.log(teacherParticipants);
+
     return (
       <Col className='d-flex justify-content-center mt-5'>
         <Card style={{ width: '22rem' }}>
@@ -32,8 +35,26 @@ const MeetingInfo = () => {
             <ListGroupItem>{meeting.location}</ListGroupItem>
             <ListGroupItem>{meeting.date}</ListGroupItem>
           </ListGroup>
-          <Card.Header>Dalyviai</Card.Header>
-          <ListGroup className='list-group-flush'></ListGroup>
+          <Card.Header>Mokytojai dalyviai</Card.Header>
+          <ListGroup className='list-group-flush'>
+            {teacherParticipants.map((participant) => {
+              return (
+                <ListGroupItem>
+                  {participant.teacher.name} {participant.teacher.surname}
+                </ListGroupItem>
+              );
+            })}
+          </ListGroup>
+          <Card.Header>Globėjai dalyviai</Card.Header>
+          <ListGroup className='list-group-flush'>
+            {parentParticipants.map((participant) => {
+              return (
+                <ListGroupItem>
+                  {participant.parent.name} {participant.parent.surname}
+                </ListGroupItem>
+              );
+            })}
+          </ListGroup>
         </Card>
       </Col>
     );

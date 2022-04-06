@@ -88,8 +88,8 @@ router.get('/:meeting_id', [authTeacher, authParent], async (req, res) => {
     const id = req.params.meeting_id;
     const meeting = await Meeting.findOne({ _id: id })
       .populate('organiser', ['name'])
-      .populate('participants.teachers.teacher', ['name'])
-      .populate('participants.parents.parent', ['name']);
+      .populate('participants.teachers.teacher', ['name', 'surname'])
+      .populate('participants.parents.parent', ['name', 'surname']);
 
     if (!meeting) {
       return res.status(400).json({ msg: 'Susitikimas nerastas' });
