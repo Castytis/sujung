@@ -1,5 +1,6 @@
 const initialState = {
   meetings: [],
+  meeting: null,
 };
 
 export default function(state = initialState, action) {
@@ -8,6 +9,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         meetings: action.payload,
+      };
+    case 'GET_MEETING_BY_ID':
+      return {
+        ...state,
+        meeting: action.payload,
       };
     case 'MEETINGS_ERROR':
       return {

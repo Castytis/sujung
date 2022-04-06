@@ -3,7 +3,7 @@ import { Col, ListGroup, ListGroupItem, Card, Button } from 'react-bootstrap';
 
 const MeetingItem = (props) => {
   return (
-    <Col className='mt-5'>
+    <Col className='d-flex justify-content-center mt-5'>
       <Card style={{ width: '26rem' }}>
         <Card.Body>
           <Card.Title>{props.meeting.title}</Card.Title>
@@ -15,7 +15,7 @@ const MeetingItem = (props) => {
           <ListGroupItem>{props.meeting.date}</ListGroupItem>
         </ListGroup>
         <Card.Body>
-          <Button variant='outline-info'>Dalyviai</Button>
+          <Button variant='outline-info'>Informacija</Button>
           <Button variant='btn btn-outline-warning' className='float-end '>
             Dalyvauti
           </Button>

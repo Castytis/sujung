@@ -16,3 +16,20 @@ export const getAllMeetings = () => {
     }
   };
 };
+
+export const getMeetingById = (meetingId) => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.get(`/api/meetings/:meeting_id`);
+
+      dispatch({
+        type: 'GET_MEETING_BY_ID',
+        payload: res.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: 'MEETINGS_ERROR',
+      });
+    }
+  };
+};
