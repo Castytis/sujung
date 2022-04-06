@@ -18,7 +18,6 @@ const MeetingInfo = () => {
   if (meeting !== null) {
     const teacherParticipants = meeting.participants.teachers;
     const parentParticipants = meeting.participants.parents;
-    console.log(teacherParticipants);
 
     return (
       <Col className='d-flex justify-content-center mt-5'>
@@ -37,23 +36,23 @@ const MeetingInfo = () => {
           </ListGroup>
           <Card.Header>Mokytojai dalyviai</Card.Header>
           <ListGroup className='list-group-flush'>
-            {teacherParticipants.map((participant) => {
-              return (
-                <ListGroupItem>
-                  {participant.teacher.name} {participant.teacher.surname}
-                </ListGroupItem>
-              );
-            })}
+            {teacherParticipants.map((participant) => (
+              <MeetingParticipants
+                key={participant.teacher._id}
+                name={participant.teacher.name}
+                surname={participant.teacher.surname}
+              />
+            ))}
           </ListGroup>
           <Card.Header>Globėjai dalyviai</Card.Header>
           <ListGroup className='list-group-flush'>
-            {parentParticipants.map((participant) => {
-              return (
-                <ListGroupItem>
-                  {participant.parent.name} {participant.parent.surname}
-                </ListGroupItem>
-              );
-            })}
+            {parentParticipants.map((participant) => (
+              <MeetingParticipants
+                key={participant.parent._id}
+                name={participant.parent.name}
+                surname={participant.parent.surname}
+              />
+            ))}
           </ListGroup>
         </Card>
       </Col>
