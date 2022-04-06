@@ -17,6 +17,40 @@ export const getAllMeetings = () => {
   };
 };
 
+export const getCurrentUsersOrganisedMeetings = () => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.get('/api/meetings/me');
+
+      dispatch({
+        type: 'ORGANISED_MEETINGS',
+        payload: res.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: 'MEETINGS_ERROR',
+      });
+    }
+  };
+};
+
+export const getCurrentParticipantsMeetings = () => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.get('/api/meetings/participating/me');
+
+      dispatch({
+        type: 'PARTICIPATION_MEETINGS',
+        payload: res.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: 'MEETINGS_ERROR',
+      });
+    }
+  };
+};
+
 export const getMeetingById = (meetingId) => {
   return async (dispatch) => {
     try {
@@ -51,7 +85,7 @@ export const addParticipant = (meetingId) => {
   };
 };
 
-export const participantLeaves = () => {
+export const removeParticipant = (meetingId) => {
   return async (dispatch) => {
     try {
       const res = await axios.put(`/api/meetings/leave/${meetingId}`);

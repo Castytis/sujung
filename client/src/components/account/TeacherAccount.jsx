@@ -3,6 +3,16 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentTeacher } from '../../store/actions/teacher-action';
 import { Card, ListGroup, ListGroupItem, Col, Button } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+  &:hover {
+    color: white;
+  }
+`;
 
 const TeacherAccount = () => {
   const navigate = useNavigate();
@@ -39,7 +49,7 @@ const TeacherAccount = () => {
           <Card.Body>
             <Button variant='outline-info'>Keisti informaciją</Button>
             <Button variant='btn btn-outline-warning' className='float-end '>
-              Mokytojo susitikimai
+              <StyledLink to='../meetings/me'>Mokytojo susitikimai</StyledLink>
             </Button>
           </Card.Body>
         </Card>

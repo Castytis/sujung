@@ -1,15 +1,23 @@
 const initialState = {
   meetings: [],
+  organised: [],
   meeting: null,
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case 'GET_ALL_MEETINGS':
+    case 'PARTICIPATION_MEETINGS':
       return {
         ...state,
         meetings: action.payload,
       };
+    case 'ORGANISED_MEETINGS':
+      return {
+        ...state,
+        organised: action.payload,
+      };
+
     case 'GET_MEETING_BY_ID':
     case 'ADD_PARTICIPANT':
     case 'DELETE_PARTICIPANT':

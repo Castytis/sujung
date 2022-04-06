@@ -5,6 +5,7 @@ import { getMeetingById } from '../../store/actions/meeting-action';
 import { Card, ListGroup, ListGroupItem, Col, Button } from 'react-bootstrap';
 import MeetingParticipants from './MeetingParticipants';
 import { addParticipant } from '../../store/actions/meeting-action';
+import { removeParticipant } from '../../store/actions/meeting-action';
 
 const MeetingInfo = () => {
   let meetingId = useParams();
@@ -18,9 +19,14 @@ const MeetingInfo = () => {
     dispatch(getMeetingById(meetingId.id));
   }, [getMeetingById]);
 
-  const participationHandler = () => {
+  const addParticipantHandler = () => {
     dispatch(addParticipant(meetingId.id));
     setParticipateButton(true);
+  };
+
+  const removeParticipantHandler = () => {
+    dispatch(removeParticipant(meetingId.id));
+    setParticipateButton(false);
   };
 
   if (meeting !== null) {
@@ -74,12 +80,16 @@ const MeetingInfo = () => {
               <Button
                 variant='btn btn-outline-success'
                 className='float-end'
-                onClick={participationHandler}
+                onClick={addParticipantHandler}
               >
                 Dalyvauti
               </Button>
             ) : (
-              <Button variant='btn btn-danger' className='float-end'>
+              <Button
+                variant='btn btn-danger'
+                className='float-end'
+                onClick={removeParticipantHandler}
+              >
                 Palikti susitikimą
               </Button>
             )}

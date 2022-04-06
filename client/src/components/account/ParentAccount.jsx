@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentParent } from '../../store/actions/parent-actions';
 import { Card, ListGroup, ListGroupItem, Col, Button } from 'react-bootstrap';
-import { useNavigate } from 'react-router-dom';
 
 const ParentAccount = () => {
   const dispatch = useDispatch();
@@ -34,7 +33,7 @@ const ParentAccount = () => {
           <Card.Body>
             <Button variant='outline-info'>Keisti informaciją</Button>
             <Button variant='btn btn-outline-warning' className='float-end '>
-              Mokytojo susitikimai
+              Globėjo susitikimai
             </Button>
           </Card.Body>
         </Card>
