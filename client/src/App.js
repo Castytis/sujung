@@ -21,6 +21,7 @@ import ParentAccount from './components/account/ParentAccount';
 import MeetingList from './components/meeting/MeetingList';
 import MeetingInfo from './components/meeting/MeetingInfo';
 import TeachersMeetings from './components/account/TeachersMeetings';
+import MeetingForm from './components/meeting/CreateMeeting/MeetingForm';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -49,6 +50,7 @@ const App = () => {
               <Route path='/meetings' element={<MeetingList />} />
               <Route path='/meetings/me' element={<TeachersMeetings />} />
               <Route path='/meetings/:id' element={<MeetingInfo />} />
+              <Route path='/create' element={<MeetingForm />} />
             </Routes>
           </Layout>
         </BrowserRouter>

@@ -82,7 +82,7 @@ const NavigationBar = () => {
               <Nav className='ms-auto'>
                 <Nav.Item>
                   <Nav.Link>
-                    <StyledLink to='/teachers'>Mokytojai</StyledLink>
+                    <StyledLink to='create'>Sukurti</StyledLink>
                   </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
@@ -90,6 +90,12 @@ const NavigationBar = () => {
                     <StyledLink to='meetings'>Susitikimai</StyledLink>
                   </Nav.Link>
                 </Nav.Item>
+                <Nav.Item>
+                  <Nav.Link>
+                    <StyledLink to='/teachers'>Mokytojai</StyledLink>
+                  </Nav.Link>
+                </Nav.Item>
+
                 <Nav.Item>
                   <Nav.Link>
                     <StyledLink to='/teachers/me'>Paskyra</StyledLink>
@@ -121,15 +127,16 @@ const NavigationBar = () => {
               <Nav className='ms-auto'>
                 <Nav.Item>
                   <Nav.Link>
-                    <StyledLink to='/teachers'>Mokytojai</StyledLink>
-                  </Nav.Link>
-                </Nav.Item>
-                <Nav.Item>
-                  <Nav.Link>
                     <StyledLink to='/meetings'>Susitikimai</StyledLink>
                   </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
+                  <Nav.Item>
+                    <Nav.Link>
+                      <StyledLink to='/teachers'>Mokytojai</StyledLink>
+                    </Nav.Link>
+                  </Nav.Item>
+
                   <Nav.Link>
                     <StyledLink to='/parents/me'>Paskyra</StyledLink>
                   </Nav.Link>
