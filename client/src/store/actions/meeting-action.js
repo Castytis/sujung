@@ -50,3 +50,20 @@ export const addParticipant = (meetingId) => {
     }
   };
 };
+
+export const participantLeaves = () => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.put(`/api/meetings/leave/${meetingId}`);
+
+      dispatch({
+        type: 'DELETE_PARTICIPANT',
+        payload: res.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: 'MEETINGS_ERROR',
+      });
+    }
+  };
+};

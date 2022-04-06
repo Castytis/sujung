@@ -80,7 +80,7 @@ const MeetingInfo = () => {
               </Button>
             ) : (
               <Button variant='btn btn-danger' className='float-end'>
-                Išeiti
+                Palikti susitikimą
               </Button>
             )}
           </Card.Body>

@@ -11,15 +11,13 @@ export default function(state = initialState, action) {
         meetings: action.payload,
       };
     case 'GET_MEETING_BY_ID':
-      return {
-        ...state,
-        meeting: action.payload,
-      };
     case 'ADD_PARTICIPANT':
+    case 'DELETE_PARTICIPANT':
       return {
         ...state,
         meeting: action.payload,
       };
+
     case 'MEETINGS_ERROR':
       return {
         ...state,
