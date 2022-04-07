@@ -46,6 +46,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const userIsTeacherHandler = () => {
     setIsTeacher(true);
@@ -66,11 +67,13 @@ const Login = () => {
   const loginTeacherHandler = (event) => {
     event.preventDefault();
     dispatch(loginTeacher({ email, password }));
+    navigate('/meetings');
   };
 
   const loginParentHandler = (event) => {
     event.preventDefault();
     dispatch(loginParent({ email, password }));
+    navigate('/meetings');
   };
 
   return (

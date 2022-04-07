@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { registerTeacher } from '../../store/actions/auth-teacher-action';
 import { registerParent } from '../../store/actions/auth-parent-action';
 
-// Styles
 const Styles = styled.div`
   h6 {
     display: inline-block;
@@ -53,6 +52,7 @@ const Register = () => {
   const [childSurname, setChildSurname] = useState('');
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const userIsTeacherHandler = () => {
     setIsTeacher(true);
@@ -119,6 +119,7 @@ const Register = () => {
         })
       );
     }
+    navigate('/meetings');
   };
 
   return (

@@ -17,7 +17,7 @@ export default function(state = initialState, action) {
         ...state,
         organised: action.payload,
       };
-
+    case 'CREATE_MEETING':
     case 'GET_MEETING_BY_ID':
     case 'ADD_PARTICIPANT':
     case 'DELETE_PARTICIPANT':

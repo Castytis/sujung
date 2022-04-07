@@ -101,3 +101,20 @@ export const removeParticipant = (meetingId) => {
     }
   };
 };
+
+export const createMeeting = (formData) => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.post('/api/meetings', formData);
+
+      dispatch({
+        type: 'CREATE_MEETING',
+        payload: res.data,
+      });
+    } catch (error) {
+      dispatch({
+        type: 'MEETINGS_ERROR',
+      });
+    }
+  };
+};
