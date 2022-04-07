@@ -22,13 +22,15 @@ const TeachersMeetings = () => {
   return (
     <Row xs={1} md={2} className='g-4 m-5 '>
       <Col className='justify-content-center mt-5'>
-        {!organisedMeetings.length > 0 ? (
-          <Card.Title className='text-center' style={{ width: '26rem' }}>
-            Orgazijuomų susitikimų nėra
-          </Card.Title>
-        ) : (
-          <OrganisedMeetings meeting={organisedMeetings} />
-        )}
+        <Card style={{ width: '26rem' }}>
+          {!organisedMeetings.length > 0 ? (
+            <Card.Title className='text-center' style={{ width: '26rem' }}>
+              Orgazijuomų susitikimų nėra
+            </Card.Title>
+          ) : (
+            <OrganisedMeetings meeting={organisedMeetings} />
+          )}
+        </Card>
       </Col>
 
       <Col className='justify-content-center mt-5'>

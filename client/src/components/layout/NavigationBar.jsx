@@ -95,7 +95,6 @@ const NavigationBar = () => {
                     <StyledLink to='/teachers'>Mokytojai</StyledLink>
                   </Nav.Link>
                 </Nav.Item>
-
                 <Nav.Item>
                   <Nav.Link>
                     <StyledLink to='/teachers/me'>Paskyra</StyledLink>
@@ -131,12 +130,11 @@ const NavigationBar = () => {
                   </Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Item>
-                    <Nav.Link>
-                      <StyledLink to='/teachers'>Mokytojai</StyledLink>
-                    </Nav.Link>
-                  </Nav.Item>
-
+                  <Nav.Link>
+                    <StyledLink to='/teachers'>Mokytojai</StyledLink>
+                  </Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
                   <Nav.Link>
                     <StyledLink to='/parents/me'>Paskyra</StyledLink>
                   </Nav.Link>

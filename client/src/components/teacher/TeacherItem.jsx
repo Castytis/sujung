@@ -26,7 +26,7 @@ const TeacherItem = (props) => {
           <Card.Text className='mb-2 text-muted'>
             El. paštas {props.teacher.email}
           </Card.Text>
-          <Button variant='' className='float-end btn btn-outline-warning'>
+          <Button variant='' className='float-start btn btn-outline-warning'>
             <StyledLink to={`/teachers/${props.teacher._id}`}>
               Daugiau informacijos
             </StyledLink>

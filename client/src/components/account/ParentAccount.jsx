@@ -2,6 +2,16 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCurrentParent } from '../../store/actions/parent-actions';
 import { Card, ListGroup, ListGroupItem, Col, Button } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+
+const StyledLink = styled(Link)`
+  text-decoration: none;
+  color: black;
+  &:hover {
+    color: white;
+  }
+`;
 
 const ParentAccount = () => {
   const dispatch = useDispatch();
@@ -22,10 +32,6 @@ const ParentAccount = () => {
           </Card.Body>
           <ListGroup className='list-group-flush'>
             <ListGroupItem>
-              <span className='text-muted'>Mokyniai</span>{' '}
-              {currentParent.childName}.
-            </ListGroupItem>
-            <ListGroupItem>
               <span className='text-muted'>El. paštas:</span>{' '}
               {currentParent.email}.
             </ListGroupItem>
@@ -33,7 +39,9 @@ const ParentAccount = () => {
           <Card.Body>
             <Button variant='outline-info'>Keisti informaciją</Button>
             <Button variant='btn btn-outline-warning' className='float-end '>
-              Globėjo susitikimai
+              <StyledLink to='..//meetings/parents/me'>
+                Globėjo susitikimai
+              </StyledLink>
             </Button>
           </Card.Body>
         </Card>
