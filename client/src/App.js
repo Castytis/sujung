@@ -23,6 +23,7 @@ import MeetingInfo from './components/meeting/MeetingInfo';
 import TeachersMeetings from './components/account/TeachersMeetings';
 import MeetingForm from './components/meeting/CreateMeeting/MeetingForm';
 import ParentsMeetings from './components/account/ParentsMeetings';
+import TeachersMeetingList from './components/teacher/teacherMeetings/TeachersMeetingList';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -56,6 +57,10 @@ const App = () => {
               />
               <Route path='/meetings/:id' element={<MeetingInfo />} />
               <Route path='/create' element={<MeetingForm />} />
+              <Route
+                path='/teachers/:id/meetings'
+                element={<TeachersMeetingList />}
+              />
             </Routes>
           </Layout>
         </BrowserRouter>
