@@ -12,10 +12,15 @@ const ParticipatingMeetings = (props) => {
           <Accordion.Item eventKey={index}>
             <Accordion.Header>{meeting.title}</Accordion.Header>
             <Accordion.Body>
-              Data ir laikas: {meeting.date} {meeting.time}
+              <span className='text-muted'>Tema: </span> {meeting.subject}
             </Accordion.Body>
-            <Accordion.Body>Vieta: {meeting.location}</Accordion.Body>
-            <Accordion.Body>Tema: {meeting.subject}</Accordion.Body>
+            <Accordion.Body>
+              <span className='text-muted'>Data ir laikas: </span>
+              {meeting.date} {meeting.time}
+            </Accordion.Body>
+            <Accordion.Body>
+              <span className='text-muted'>Vieta: </span> {meeting.location}
+            </Accordion.Body>
           </Accordion.Item>
         ))}
       </Accordion>
