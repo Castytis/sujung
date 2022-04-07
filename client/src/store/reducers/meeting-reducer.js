@@ -1,13 +1,13 @@
 const initialState = {
   meetings: [],
   organised: [],
+  participated: [],
   meeting: null,
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case 'GET_ALL_MEETINGS':
-    case 'PARTICIPATION_MEETINGS':
       return {
         ...state,
         meetings: action.payload,
@@ -16,6 +16,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         organised: action.payload,
+      };
+    case 'PARTICIPATION_MEETINGS':
+      return {
+        ...state,
+        participated: action.payload,
       };
     case 'CREATE_MEETING':
     case 'GET_MEETING_BY_ID':

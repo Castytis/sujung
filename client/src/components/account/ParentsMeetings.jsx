@@ -7,7 +7,9 @@ import { Card } from 'react-bootstrap';
 
 const ParentsMeetings = () => {
   const dispatch = useDispatch();
-  const participantMeetings = useSelector((state) => state.meetings.meetings);
+  const participantMeetings = useSelector(
+    (state) => state.meetings.participated
+  );
 
   useEffect(() => {
     dispatch(getCurrentParticipantsMeetings());

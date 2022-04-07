@@ -9,7 +9,9 @@ import ParticipatingMeetings from './meetings/ParticipatingMeetings';
 const TeachersMeetings = () => {
   const dispatch = useDispatch();
   const organisedMeetings = useSelector((state) => state.meetings.organised);
-  const participantMeetings = useSelector((state) => state.meetings.meetings);
+  const participantMeetings = useSelector(
+    (state) => state.meetings.participated
+  );
 
   useEffect(() => {
     dispatch(getCurrentUsersOrganisedMeetings());
