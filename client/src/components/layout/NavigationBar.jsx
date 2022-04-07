@@ -75,7 +75,7 @@ const NavigationBar = () => {
         <Navbar expand='lg'>
           <Container>
             <Navbar.Brand>
-              <StyledLink to=''>sujung</StyledLink>
+              <StyledLink to='#'>sujung</StyledLink>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls='basic-navbar-nav' />
             <Navbar.Collapse id='basic-navbar-nav'>
@@ -120,7 +120,7 @@ const NavigationBar = () => {
         <Navbar expand='lg'>
           <Container>
             <Navbar.Brand>
-              <StyledLink to=''>sujung</StyledLink>
+              <StyledLink to='#'>sujung</StyledLink>
             </Navbar.Brand>
             <Navbar.Toggle aria-controls='basic-navbar-nav' />
             <Navbar.Collapse id='basic-navbar-nav'>
