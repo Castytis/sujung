@@ -118,3 +118,19 @@ export const createMeeting = (formData) => {
     }
   };
 };
+
+export const deleteMeeting = (meetingId) => {
+  return async (dispatch) => {
+    try {
+      const res = await axios.delete(`/api/meetings/${meetingId}`);
+
+      dispatch({
+        type: 'DELETE_MEETING',
+      });
+    } catch (error) {
+      dispatch({
+        type: 'MEETINGS_ERROR',
+      });
+    }
+  };
+};

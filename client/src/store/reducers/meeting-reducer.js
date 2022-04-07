@@ -25,7 +25,10 @@ export default function(state = initialState, action) {
         ...state,
         meeting: action.payload,
       };
-
+    case 'DELETE_MEETING':
+      return {
+        ...state,
+      };
     case 'MEETINGS_ERROR':
       return {
         ...state,
