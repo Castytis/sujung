@@ -57,7 +57,10 @@ router.post(
 // Get all meetings
 router.get('/', [authTeacher, authParent], async (req, res) => {
   try {
-    const meetings = await Meeting.find().populate('organiser', ['name']);
+    const meetings = await Meeting.find().populate('organiser', [
+      'name',
+      'surname',
+    ]);
     res.json(meetings);
   } catch (error) {
     console.error(error.message);
@@ -88,7 +91,7 @@ router.get('/:meeting_id', [authTeacher, authParent], async (req, res) => {
   try {
     const id = req.params.meeting_id;
     const meeting = await Meeting.findOne({ _id: id })
-      .populate('organiser', ['name'])
+      .populate('organiser', ['name', 'surname'])
       .populate('participants.teachers.teacher', ['name', 'surname'])
       .populate('participants.parents.parent', ['name', 'surname']);
 

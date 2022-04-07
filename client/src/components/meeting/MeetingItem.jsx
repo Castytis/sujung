@@ -19,7 +19,9 @@ const MeetingItem = (props) => {
           <Card.Title>{props.meeting.title}</Card.Title>
         </Card.Body>
         <ListGroup className='list-group-flush'>
-          <ListGroupItem>{props.meeting.organiser.name}</ListGroupItem>
+          <ListGroupItem>
+            {props.meeting.organiser.name} {props.meeting.organiser.surname}
+          </ListGroupItem>
           <ListGroupItem>{props.meeting.subject}</ListGroupItem>
           <ListGroupItem>{props.meeting.location}</ListGroupItem>
           <ListGroupItem>{props.meeting.date}</ListGroupItem>

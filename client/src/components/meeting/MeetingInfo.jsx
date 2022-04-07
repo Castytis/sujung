@@ -41,7 +41,7 @@ const MeetingInfo = () => {
             <Card.Title>{meeting.subject}</Card.Title>
             <Card.Text>
               <span className='text-muted'>Organizatorius:</span>{' '}
-              {meeting.organiser.name}
+              {meeting.organiser.name} {meeting.organiser.surname}
             </Card.Text>
           </Card.Body>
           <ListGroup className='list-group-flush'>

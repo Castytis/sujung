@@ -53,7 +53,6 @@ const MeetingForm = () => {
 
   const createMeetingHandler = (event) => {
     event.preventDefault();
-
     dispatch(createMeeting({ title, subject, date, time, location }));
     navigate('/meetings/me');
   };
@@ -64,10 +63,11 @@ const MeetingForm = () => {
         <Row>
           <Col className='p-5'>
             <h3 className='text-center p-2'>Naujas susitikimas</h3>
-            <Form>
+            <Form onSubmit={createMeetingHandler}>
               <Form.Group className='mb-3'>
                 <Form.Label>Pavadinimas</Form.Label>
                 <Form.Control
+                  required
                   type='text'
                   onChange={titleChangeHandler}
                   value={title}
@@ -77,6 +77,7 @@ const MeetingForm = () => {
               <Form.Group className='mb-3'>
                 <Form.Label>Tikslas</Form.Label>
                 <Form.Control
+                  required
                   type='text'
                   onChange={subjectChangeHandler}
                   value={subject}
@@ -86,6 +87,7 @@ const MeetingForm = () => {
               <Form.Group className='mb-3'>
                 <Form.Label>Data</Form.Label>
                 <Form.Control
+                  required
                   type='text'
                   onChange={dateChangeHandler}
                   value={date}
@@ -95,6 +97,7 @@ const MeetingForm = () => {
               <Form.Group className='mb-3'>
                 <Form.Label>Laikas</Form.Label>
                 <Form.Control
+                  required
                   type='text'
                   onChange={timeChangeHandler}
                   value={time}
@@ -104,6 +107,7 @@ const MeetingForm = () => {
               <Form.Group className='mb-3'>
                 <Form.Label>Vieta</Form.Label>
                 <Form.Control
+                  required
                   type='text'
                   onChange={locationChangeHandler}
                   value={location}
@@ -113,12 +117,7 @@ const MeetingForm = () => {
               <Button variant='danger' className='float-start'>
                 <CancelLink to='../meetings'>Atšaukti</CancelLink>
               </Button>
-              <Button
-                variant='warning'
-                onClick={createMeetingHandler}
-                type='submit'
-                className='float-end'
-              >
+              <Button variant='warning' type='submit' className='float-end'>
                 Sukurti
               </Button>
             </Form>
