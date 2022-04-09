@@ -48,8 +48,6 @@ const Register = () => {
   const [surname, setSurname] = useState('');
   const [subject, setSubject] = useState('');
   const [classes, setClasses] = useState('');
-  const [childName, setChildName] = useState('');
-  const [childSurname, setChildSurname] = useState('');
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -90,14 +88,6 @@ const Register = () => {
     setClasses(event.target.value);
   };
 
-  const childNameChangeHandler = (event) => {
-    setChildName(event.target.value);
-  };
-
-  const childSurnameChangeHandler = (event) => {
-    setChildSurname(event.target.value);
-  };
-
   const registerUserHandler = (event) => {
     event.preventDefault();
 
@@ -114,8 +104,6 @@ const Register = () => {
           password,
           name,
           surname,
-          childName,
-          childSurname,
         })
       );
     }
@@ -271,24 +259,7 @@ const Register = () => {
                     placeholder='Pavardė'
                   />
                 </Form.Group>
-                <Form.Group className='mb-3'>
-                  <Form.Label>Vaiko vardas</Form.Label>
-                  <Form.Control
-                    type='text'
-                    value={childName}
-                    onChange={childNameChangeHandler}
-                    placeholder='Vaiko vardas'
-                  />
-                </Form.Group>
-                <Form.Group className='mb-3'>
-                  <Form.Label>Vaiko pavardė</Form.Label>
-                  <Form.Control
-                    type='text'
-                    value={childSurname}
-                    onChange={childSurnameChangeHandler}
-                    placeholder='Vaiko pavardė'
-                  />
-                </Form.Group>
+
                 <Button
                   variant='warning'
                   type='submit'
