@@ -9,7 +9,7 @@ import { logoutParent } from '../../store/actions/auth-parent-action';
 
 const Styles = styled.div`
   .navbar {
-    background-color: #ffff66;
+    background-color: #f6ff00;
   }
   .navbar-brand,
   .navbar-nav .nav-link {
