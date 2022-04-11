@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { loginTeacher } from '../../store/actions/auth-teacher-action';
@@ -47,6 +47,11 @@ const Login = () => {
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isAuthParent = useSelector((state) => state.authenticateParent.isAuth);
+  const isAuthTeacher = useSelector(
+    (state) => state.authenticateTeacher.isAuth
+  );
 
   const userIsTeacherHandler = () => {
     setIsTeacher(true);
@@ -73,6 +78,16 @@ const Login = () => {
     event.preventDefault();
     dispatch(loginParent({ email, password }));
   };
+
+  if (isAuthParent) {
+    dispatch(setNotification('Prisijungta sėkmingai', 'success'));
+    navigate('/meetings');
+  }
+
+  if (isAuthTeacher) {
+    dispatch(setNotification('Prisijungta sėkmingai', 'success'));
+    navigate('/meetings');
+  }
 
   return (
     <Styles>

@@ -1,14 +1,7 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import {
-  Card,
-  ListGroup,
-  ListGroupItem,
-  Col,
-  Button,
-  Row,
-} from 'react-bootstrap';
+import { Card, ListGroup, ListGroupItem, Col, Row } from 'react-bootstrap';
 
 const TeachersMeetingList = () => {
   const meetings = useSelector((state) => state.meetings.meetings);

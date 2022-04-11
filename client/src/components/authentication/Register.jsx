@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { registerTeacher } from '../../store/actions/auth-teacher-action';
 import { registerParent } from '../../store/actions/auth-parent-action';
+import { setNotification } from '../../store/actions/notification-action';
 
 const Styles = styled.div`
   h6 {
@@ -50,6 +51,11 @@ const Register = () => {
   const [classes, setClasses] = useState('');
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isAuthParent = useSelector((state) => state.authenticateParent.isAuth);
+  const isAuthTeacher = useSelector(
+    (state) => state.authenticateTeacher.isAuth
+  );
 
   const userIsTeacherHandler = () => {
     setIsTeacher(true);
@@ -107,6 +113,16 @@ const Register = () => {
       );
     }
   };
+
+  if (isAuthParent) {
+    dispatch(setNotification('Registracija sėkminga', 'success'));
+    navigate('/meetings');
+  }
+
+  if (isAuthTeacher) {
+    dispatch(setNotification('Registracija sėkminga', 'success'));
+    navigate('/meetings');
+  }
 
   return (
     <Styles>
