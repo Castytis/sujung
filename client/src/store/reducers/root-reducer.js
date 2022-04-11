@@ -4,6 +4,7 @@ import authenticateParent from './auth-parent-reducer';
 import teachers from './teacher-reducer';
 import parents from './parent-reducer';
 import meetings from './meeting-reducer';
+import notification from './notification-reducer';
 
 export default combineReducers({
   authenticateTeacher,
@@ -11,4 +12,5 @@ export default combineReducers({
   teachers,
   parents,
   meetings,
+  notification,
 });
