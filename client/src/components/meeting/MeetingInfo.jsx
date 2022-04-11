@@ -11,7 +11,7 @@ const MeetingInfo = () => {
   let meetingId = useParams();
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const meeting = useSelector((state) => state.meetings.meeting);
+  let meeting = useSelector((state) => state.meetings.meeting);
 
   const [participateButton, setParticipateButton] = useState(false);
 

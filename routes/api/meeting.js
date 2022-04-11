@@ -196,7 +196,6 @@ router.put(
         }
 
         meeting.participants.teachers.push({ teacher: participantTeacher });
-        await meeting.save();
       }
 
       // Participant is parent
@@ -212,9 +211,9 @@ router.put(
         }
 
         meeting.participants.parents.push({ parent: participantParent });
-        await meeting.save();
       }
 
+      await meeting.save();
       res.json(meeting);
     } catch (error) {
       console.error(error.message);
@@ -254,7 +253,6 @@ router.put(
           })
           .indexOf(participantTeacher);
         meeting.participants.teachers.splice(teacherIndex, 1);
-        await meeting.save();
       }
 
       // Parent is leaving
@@ -276,9 +274,9 @@ router.put(
           .indexOf(participantParent);
 
         meeting.participants.parents.splice(parentIndex, 1);
-        await meeting.save();
       }
 
+      await meeting.save();
       res.json(meeting);
     } catch (error) {
       console.error(error.message);

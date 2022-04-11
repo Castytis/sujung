@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { set } from 'express/lib/application';
 import { setNotification } from './notification-action';
 
 export const getAllMeetings = () => {
@@ -81,6 +80,7 @@ export const addParticipant = (meetingId) => {
       });
 
       dispatch(setNotification('Susitikime dalyvaujate', 'success'));
+      dispatch(getMeetingById(meetingId));
     } catch (error) {
       dispatch(setNotification('Susitikime jau dalyvaujate', 'danger'));
 
@@ -102,6 +102,7 @@ export const removeParticipant = (meetingId) => {
       });
 
       dispatch(setNotification('Palikote susitikimą', 'success'));
+      dispatch(getMeetingById(meetingId));
     } catch (error) {
       dispatch({
         type: 'MEETINGS_ERROR',
@@ -110,7 +111,7 @@ export const removeParticipant = (meetingId) => {
   };
 };
 
-export const createMeeting = (formData) => {
+export const createMeeting = (formData, navigate) => {
   return async (dispatch) => {
     try {
       const res = await axios.post('/api/meetings', formData);
@@ -121,6 +122,8 @@ export const createMeeting = (formData) => {
       });
 
       dispatch(setNotification('Susitikimas sukurtas', 'success'));
+
+      navigate('/meetings');
     } catch (error) {
       const errors = error.response.data.errors;
 

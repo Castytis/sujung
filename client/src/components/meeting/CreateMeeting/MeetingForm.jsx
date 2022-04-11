@@ -53,7 +53,7 @@ const MeetingForm = () => {
 
   const createMeetingHandler = (event) => {
     event.preventDefault();
-    dispatch(createMeeting({ title, subject, date, time, location }));
+    dispatch(createMeeting({ title, subject, date, time, location }, navigate));
   };
 
   return (
