@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 import { loginTeacher } from '../../store/actions/auth-teacher-action';
 import { loginParent } from '../../store/actions/auth-parent-action';
+import { setNotification } from '../../store/actions/notification-action';
 
 // Styles
 const Styles = styled.div`
@@ -46,7 +47,6 @@ const Login = () => {
   const [password, setPassword] = useState('');
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   const userIsTeacherHandler = () => {
     setIsTeacher(true);
@@ -67,13 +67,11 @@ const Login = () => {
   const loginTeacherHandler = (event) => {
     event.preventDefault();
     dispatch(loginTeacher({ email, password }));
-    navigate('/meetings');
   };
 
   const loginParentHandler = (event) => {
     event.preventDefault();
     dispatch(loginParent({ email, password }));
-    navigate('/meetings');
   };
 
   return (

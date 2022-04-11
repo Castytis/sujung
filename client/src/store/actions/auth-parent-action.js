@@ -1,5 +1,6 @@
 import axios from 'axios';
 import setAuthToken from '../../token/setAuthToken';
+import { setNotification } from './notification-action';
 
 export const registerParent = (formData) => {
   return async (dispatch) => {
@@ -13,6 +14,14 @@ export const registerParent = (formData) => {
 
       dispatch(loadParent());
     } catch (error) {
+      const errors = error.response.data.errors;
+
+      if (errors) {
+        errors.forEach((error) => {
+          dispatch(setNotification(error.msg, 'danger'));
+        });
+      }
+
       dispatch({
         type: 'REGISTER_PARENT_FAIL',
       });
@@ -32,6 +41,13 @@ export const loginParent = (formData) => {
 
       dispatch(loadParent());
     } catch (error) {
+      const errors = error.response.data.errors;
+
+      if (errors) {
+        errors.forEach((error) => {
+          dispatch(setNotification(error.msg, 'danger'));
+        });
+      }
       dispatch({
         type: 'LOGIN_PARENT_FAIL',
       });

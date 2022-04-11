@@ -1,5 +1,6 @@
 import axios from 'axios';
 import setAuthToken from '../../token/setAuthToken';
+import { setNotification } from './notification-action';
 
 export const registerTeacher = (formData) => {
   return async (dispatch) => {
@@ -13,6 +14,14 @@ export const registerTeacher = (formData) => {
 
       dispatch(loadTeacher());
     } catch (error) {
+      const errors = error.response.data.errors;
+
+      if (errors) {
+        errors.forEach((error) => {
+          dispatch(setNotification(error.msg, 'danger'));
+        });
+      }
+
       dispatch({
         type: 'REGISTER_TEACHER_FAIL',
       });
@@ -32,6 +41,13 @@ export const loginTeacher = (formData) => {
 
       dispatch(loadTeacher());
     } catch (error) {
+      const errors = error.response.data.errors;
+
+      if (errors) {
+        errors.forEach((error) => {
+          dispatch(setNotification(error.msg, 'danger'));
+        });
+      }
       dispatch({
         type: 'LOGIN_TEACHER_FAIL',
       });

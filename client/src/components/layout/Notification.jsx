@@ -10,12 +10,8 @@ const Notification = () => {
     notifications.length > 0 &&
     notifications.map((notification) => {
       return (
-        <Alert
-          className='m-2'
-          style={{ width: '560px' }}
-          variant={notification.msgType}
-        >
-          <Alert.Heading>{notification.msg}</Alert.Heading>
+        <Alert className='m-1 ' variant={notification.msgType}>
+          {notification.msg}
         </Alert>
       );
     });
