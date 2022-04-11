@@ -43,6 +43,9 @@ const Teacher = () => {
             <ListGroupItem>
               <span className='text-muted'>El. paštas:</span> {teacher.email}.
             </ListGroupItem>
+            <ListGroupItem>
+              <span className='text-muted'>Tel. numeris:</span> {teacher.number}
+            </ListGroupItem>
           </ListGroup>
           <Card.Body>
             <Button variant='outline-info' onClick={() => navigate(-1)}>

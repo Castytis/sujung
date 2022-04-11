@@ -49,6 +49,7 @@ const Register = () => {
   const [surname, setSurname] = useState('');
   const [subject, setSubject] = useState('');
   const [classes, setClasses] = useState('');
+  const [phoneNumber, setPhoneNumber] = useState('');
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -91,6 +92,10 @@ const Register = () => {
 
   const classesChangeHandler = (event) => {
     setClasses(event.target.value);
+  };
+
+  const phoneNumberHandler = (event) => {
+    setPhoneNumber(event.target.value);
   };
 
   const registerUserHandler = (event) => {
@@ -193,6 +198,15 @@ const Register = () => {
                     type='text'
                     value={surname}
                     onChange={surnameChangeHandler}
+                    placeholder='Pavardė'
+                  />
+                </Form.Group>
+                <Form.Group className='mb-3'>
+                  <Form.Label>Tel. Numeris</Form.Label>
+                  <Form.Control
+                    type='text'
+                    value={phoneNumber}
+                    onChange={phoneNumberHandler}
                     placeholder='Pavardė'
                   />
                 </Form.Group>

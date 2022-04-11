@@ -45,9 +45,12 @@ const TeacherAccount = () => {
               <span className='text-muted'>El. paštas:</span>{' '}
               {currentTeacher.email}.
             </ListGroupItem>
+            <ListGroupItem>
+              <span className='text-muted'>Tel. numeris:</span>{' '}
+              {currentTeacher.number}
+            </ListGroupItem>
           </ListGroup>
           <Card.Body>
-            <Button variant='outline-info'>Keisti informaciją</Button>
             <Button variant='btn btn-outline-warning' className='float-end '>
               <StyledLink to='../meetings/me'>Mokytojo susitikimai</StyledLink>
             </Button>

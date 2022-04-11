@@ -29,7 +29,8 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name, surname, email, password, subject, classes, info } = req.body;
+    const { name, surname, email, password, subject, classes, info, number } =
+      req.body;
 
     try {
       let teacher = await Teacher.findOne({ email: email });
@@ -48,6 +49,7 @@ router.post(
         subject,
         classes,
         info,
+        number,
       });
 
       const salt = await bcrypt.genSalt(10);

@@ -37,7 +37,6 @@ const ParentAccount = () => {
             </ListGroupItem>
           </ListGroup>
           <Card.Body>
-            <Button variant='outline-info'>Keisti informaciją</Button>
             <Button variant='btn btn-outline-warning' className='float-end '>
               <StyledLink to='..//meetings/parents/me'>
                 Globėjo susitikimai
