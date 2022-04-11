@@ -2,7 +2,6 @@ const initialState = {
   token: localStorage.getItem('token'),
   isAuth: null,
   teacher: null,
-  loading: true,
 };
 
 export default function(state = initialState, action) {
@@ -14,14 +13,12 @@ export default function(state = initialState, action) {
         ...state,
         ...action.payload,
         isAuth: true,
-        loading: false,
       };
     case 'TEACHER_LOADED':
       return {
         ...state,
         isAuth: true,
         teacher: action.payload,
-        loading: false,
       };
     case 'REGISTER_TEACHER_FAIL':
     case 'LOGIN_TEACHER_FAIL':
@@ -32,7 +29,6 @@ export default function(state = initialState, action) {
         ...state,
         token: null,
         isAuth: false,
-        loading: false,
       };
     default:
       return state;

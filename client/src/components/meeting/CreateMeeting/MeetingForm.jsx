@@ -54,7 +54,6 @@ const MeetingForm = () => {
   const createMeetingHandler = (event) => {
     event.preventDefault();
     dispatch(createMeeting({ title, subject, date, time, location }));
-    navigate('/meetings/me');
   };
 
   return (
@@ -67,7 +66,6 @@ const MeetingForm = () => {
               <Form.Group className='mb-3'>
                 <Form.Label>Pavadinimas</Form.Label>
                 <Form.Control
-                  required
                   type='text'
                   onChange={titleChangeHandler}
                   value={title}
@@ -77,7 +75,6 @@ const MeetingForm = () => {
               <Form.Group className='mb-3'>
                 <Form.Label>Tikslas</Form.Label>
                 <Form.Control
-                  required
                   type='text'
                   onChange={subjectChangeHandler}
                   value={subject}
@@ -87,7 +84,6 @@ const MeetingForm = () => {
               <Form.Group className='mb-3'>
                 <Form.Label>Data</Form.Label>
                 <Form.Control
-                  required
                   type='text'
                   onChange={dateChangeHandler}
                   value={date}
@@ -97,7 +93,6 @@ const MeetingForm = () => {
               <Form.Group className='mb-3'>
                 <Form.Label>Laikas</Form.Label>
                 <Form.Control
-                  required
                   type='text'
                   onChange={timeChangeHandler}
                   value={time}
@@ -107,7 +102,6 @@ const MeetingForm = () => {
               <Form.Group className='mb-3'>
                 <Form.Label>Vieta</Form.Label>
                 <Form.Control
-                  required
                   type='text'
                   onChange={locationChangeHandler}
                   value={location}

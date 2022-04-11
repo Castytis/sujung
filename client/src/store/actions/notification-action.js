@@ -10,6 +10,6 @@ export const setNotification = (msg, msgType) => {
 
     setTimeout(() => {
       dispatch({ type: 'REMOVE_NOTIFICATION', payload: id });
-    }, 4000);
+    }, 3000);
   };
 };

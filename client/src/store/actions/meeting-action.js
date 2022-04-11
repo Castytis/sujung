@@ -1,4 +1,6 @@
 import axios from 'axios';
+import { set } from 'express/lib/application';
+import { setNotification } from './notification-action';
 
 export const getAllMeetings = () => {
   return async (dispatch) => {
@@ -77,7 +79,11 @@ export const addParticipant = (meetingId) => {
         type: 'ADD_PARTICIPANT',
         payload: res.data,
       });
+
+      dispatch(setNotification('Susitikime dalyvaujate', 'success'));
     } catch (error) {
+      dispatch(setNotification('Susitikime jau dalyvaujate', 'danger'));
+
       dispatch({
         type: 'MEETINGS_ERROR',
       });
@@ -94,6 +100,8 @@ export const removeParticipant = (meetingId) => {
         type: 'DELETE_PARTICIPANT',
         payload: res.data,
       });
+
+      dispatch(setNotification('Palikote susitikimą', 'success'));
     } catch (error) {
       dispatch({
         type: 'MEETINGS_ERROR',
@@ -111,7 +119,16 @@ export const createMeeting = (formData) => {
         type: 'CREATE_MEETING',
         payload: res.data,
       });
+
+      dispatch(setNotification('Susitikimas sukurtas', 'success'));
     } catch (error) {
+      const errors = error.response.data.errors;
+
+      if (errors) {
+        errors.forEach((error) => {
+          dispatch(setNotification(error.msg, 'danger'));
+        });
+      }
       dispatch({
         type: 'MEETINGS_ERROR',
       });
@@ -127,6 +144,8 @@ export const deleteMeeting = (meetingId) => {
       dispatch({
         type: 'DELETE_MEETING',
       });
+
+      dispatch(setNotification('Susitikimas ištrintas', 'success'));
     } catch (error) {
       dispatch({
         type: 'MEETINGS_ERROR',
