@@ -2,6 +2,9 @@ import React from 'react';
 import { Col, ListGroup, ListGroupItem, Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { useDispatch } from 'react-redux';
+
+import { addParticipant } from '../../store/actions/meeting-action';
 
 const StyledLink = styled(Link)`
   text-decoration: none;
@@ -12,6 +15,9 @@ const StyledLink = styled(Link)`
 `;
 
 const MeetingItem = (props) => {
+  const dispatch = useDispatch();
+  const meetingId = props.meeting._id;
+
   return (
     <Col className='d-flex justify-content-center mt-5'>
       <Card style={{ width: '26rem' }}>
@@ -33,7 +39,11 @@ const MeetingItem = (props) => {
               Daugiau informacijos
             </StyledLink>
           </Button>
-          <Button variant='btn btn-outline-success' className='float-end '>
+          <Button
+            variant='btn btn-outline-success'
+            className='float-end'
+            onClick={() => dispatch(addParticipant(meetingId))}
+          >
             Dalyvauti
           </Button>
         </Card.Body>
