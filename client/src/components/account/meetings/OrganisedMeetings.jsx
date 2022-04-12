@@ -1,13 +1,10 @@
 import React from 'react';
 import { Card, Accordion, Button } from 'react-bootstrap';
-import AccordionBody from 'react-bootstrap/esm/AccordionBody';
-import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import { deleteMeeting } from '../../../store/actions/meeting-action';
 
 const OrganisedMeetings = (props) => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
   if (props.meeting) {
     return (
@@ -31,17 +28,16 @@ const OrganisedMeetings = (props) => {
                 <span className='text-muted'>Vieta: </span> {meeting.location}
               </Accordion.Body>
 
-              <AccordionBody>
+              <Accordion.Body>
                 <Button
                   variant='danger'
                   onClick={() => {
                     dispatch(deleteMeeting(meeting._id));
-                    navigate('../../teachers/me');
                   }}
                 >
                   Ištrinti
                 </Button>
-              </AccordionBody>
+              </Accordion.Body>
             </Accordion.Item>
           ))}
         </Accordion>

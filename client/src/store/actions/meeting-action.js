@@ -103,6 +103,7 @@ export const removeParticipant = (meetingId) => {
 
       dispatch(setNotification('Palikote susitikimą', 'success'));
       dispatch(getMeetingById(meetingId));
+      dispatch(getCurrentParticipantsMeetings());
     } catch (error) {
       dispatch({
         type: 'MEETINGS_ERROR',
@@ -149,6 +150,7 @@ export const deleteMeeting = (meetingId) => {
       });
 
       dispatch(setNotification('Susitikimas ištrintas', 'success'));
+      dispatch(getCurrentUsersOrganisedMeetings());
     } catch (error) {
       dispatch({
         type: 'MEETINGS_ERROR',

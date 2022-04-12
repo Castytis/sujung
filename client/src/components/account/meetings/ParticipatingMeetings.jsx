@@ -1,7 +1,11 @@
 import React from 'react';
-import { Card, Accordion } from 'react-bootstrap';
+import { Card, Accordion, Button } from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+import { removeParticipant } from '../../../store/actions/meeting-action';
 
 const ParticipatingMeetings = (props) => {
+  const dispatch = useDispatch();
+
   return (
     <Card style={{ width: '26rem' }}>
       <Card.Title className='text-center'>
@@ -20,6 +24,16 @@ const ParticipatingMeetings = (props) => {
             </Accordion.Body>
             <Accordion.Body>
               <span className='text-muted'>Vieta: </span> {meeting.location}
+            </Accordion.Body>
+            <Accordion.Body>
+              <Button
+                variant='danger'
+                onClick={() => {
+                  dispatch(removeParticipant(meeting._id));
+                }}
+              >
+                Palikti
+              </Button>
             </Accordion.Body>
           </Accordion.Item>
         ))}
