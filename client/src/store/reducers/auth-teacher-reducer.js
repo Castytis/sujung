@@ -29,6 +29,7 @@ export default function(state = initialState, action) {
         ...state,
         token: null,
         isAuth: false,
+        teacher: null,
       };
     default:
       return state;

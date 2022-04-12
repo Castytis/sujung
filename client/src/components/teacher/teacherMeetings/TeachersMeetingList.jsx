@@ -29,17 +29,31 @@ const TeachersMeetingList = () => {
                   <span className='text-muted'>Tikslas:</span> {meeting.subject}
                 </ListGroupItem>
                 <ListGroupItem>
-                  <span className='text-muted'>Data, laikas</span>{' '}
-                  {meeting.date} {meeting.time}
+                  <span className='text-muted'>Data:</span> {meeting.date}
+                </ListGroupItem>
+                <ListGroupItem>
+                  <span className='text-muted'>Laikas:</span> {meeting.time}
                 </ListGroupItem>
                 <ListGroupItem>
                   <span className='text-muted'>Vieta:</span> {meeting.location}
                 </ListGroupItem>
               </ListGroup>
-              <Card.Body></Card.Body>
             </Card>
           </Col>
         ))}
+      </Row>
+    );
+  }
+  if (teachersMeetings.length === 0) {
+    return (
+      <Row className='g-4'>
+        <Col className='d-flex justify-content-center mt-5'>
+          <Card style={{ width: '22rem' }}>
+            <Card.Body>
+              <Card.Title>Mokytojas neturi susitikimų</Card.Title>
+            </Card.Body>
+          </Card>
+        </Col>
       </Row>
     );
   }
