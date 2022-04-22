@@ -52,7 +52,7 @@ const TeacherAccount = () => {
           </ListGroup>
           <Card.Body>
             <Button variant='btn btn-outline-warning' className='float-end '>
-              <StyledLink to='../meetings/me'>Mokytojo susitikimai</StyledLink>
+              <StyledLink to='../meetings/me'>Mano susitikimai</StyledLink>
             </Button>
           </Card.Body>
         </Card>

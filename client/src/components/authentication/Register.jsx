@@ -207,7 +207,7 @@ const Register = () => {
                     type='text'
                     value={phoneNumber}
                     onChange={phoneNumberHandler}
-                    placeholder='Pavardė'
+                    placeholder='Tel. Numeris'
                   />
                 </Form.Group>
                 <Form.Group className='mb-3'>

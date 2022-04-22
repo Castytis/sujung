@@ -39,7 +39,7 @@ const ParentAccount = () => {
           <Card.Body>
             <Button variant='btn btn-outline-warning' className='float-end '>
               <StyledLink to='..//meetings/parents/me'>
-                Globėjo susitikimai
+                Mano susitikimai
               </StyledLink>
             </Button>
           </Card.Body>
