@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server",
-    "server": "nodemon server",
+    "server": "env-cmd -f ./config/dev.env nodemon server",
     "frontend": "npm start --prefix client",
     "app": "concurrently \"npm run server\" \"npm run frontend \""
   },
@@ -23,5 +23,8 @@
     "redux-devtools-extension": "^2.13.9",
     "request": "^2.88.2",
     "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "env-cmd": "^10.1.0"
   }
 }
