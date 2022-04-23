@@ -8,7 +8,7 @@
     "server": "env-cmd -f ./config/dev.env nodemon server",
     "frontend": "npm start --prefix client",
     "app": "concurrently \"npm run server\" \"npm run frontend \"",
-    "test": "env-cmd -f ./config/test.env jest"
+    "test": "env-cmd -f ./config/test.env jest --runInBand"
   },
   "jest": {
     "testEnvironment": "node"
