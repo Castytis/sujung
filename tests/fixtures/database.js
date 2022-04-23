@@ -3,10 +3,13 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 const Teacher = require('../../models/Teacher');
 const Parent = require('../../models/Parent');
+const Meeting = require('../../models/Meeting');
 
 const teacherOneId = new mongoose.Types.ObjectId();
 const teacherTwoId = new mongoose.Types.ObjectId();
 const parentOneId = new mongoose.Types.ObjectId();
+const meetingOneId = new mongoose.Types.ObjectId();
+const meetingTwoId = new mongoose.Types.ObjectId();
 
 const teacherPayload = {
   teacher: {
@@ -54,14 +57,36 @@ const parentOne = {
   password: parentOnePassword,
 };
 
+const meetingOne = {
+  _id: meetingOneId,
+  organiser: teacherOneId,
+  title: 'Susitikimas su mokinių globėjais',
+  subject: 'Aptarti mokinių rezultatus',
+  date: '2022-06-05',
+  time: '18:00',
+  location: '212 kabinetas',
+};
+
+const meetingTwo = {
+  _id: meetingTwoId,
+  organiser: teacherTwoId,
+  title: 'Susitikimas su mokinių globėjais',
+  subject: 'Aptarti mokinių matematinius rezultatus',
+  date: '2022-06-01',
+  time: '17:00',
+  location: '400 kabinetas',
+};
+
 const setupDataBase = async () => {
   await Teacher.deleteMany();
   await Parent.deleteMany();
+  await Meeting.deleteMany();
 
   const firstTeacher = new Teacher(teacherOne);
   const secondTeacher = new Teacher(teacherTwo);
-
   const firstParent = new Parent(parentOne);
+  const firstMeeting = new Meeting(meetingOne);
+  const secondMeeting = new Meeting(meetingTwo);
 
   const salt = await bcrypt.genSalt(10);
   teacherOne.password = await bcrypt.hash(teacherOnePassword, salt);
@@ -70,16 +95,22 @@ const setupDataBase = async () => {
   await firstTeacher.save();
   await secondTeacher.save();
   await firstParent.save();
+  await firstMeeting.save();
+  await secondMeeting.save();
 };
 
 module.exports = {
   teacherOne,
   teacherTwo,
   parentOne,
+  meetingOne,
+  meetingTwo,
   teacherOnePassword,
   parentOnePassword,
   teacherOneId,
   teacherTwoId,
+  meetingOneId,
+  meetingTwoId,
   parentOneId,
   teacherOneToken,
   parentOneToken,

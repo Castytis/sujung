@@ -6,7 +6,6 @@ const {
   parentOne,
   parentOneToken,
   parentOnePassword,
-  parentOneId,
   teacherTwoId,
   setupDataBase,
 } = require('./fixtures/database');
@@ -76,6 +75,11 @@ test('Turėtų neprijungti globėjo', async () => {
 
   const newToken = response.body.token;
   expect(newToken).toBeUndefined();
+
+  const errors = response.body.errors;
+  expect(errors[0].msg).toBe(
+    'Mokinio globėjas su šiais prisijungimais neegzistuoja'
+  );
 });
 
 // Get teachers list test

@@ -4,7 +4,6 @@ const Teacher = require('../models/Teacher');
 const {
   teacherOne,
   teacherOnePassword,
-  teacherOneId,
   teacherTwoId,
   teacherOneToken,
   setupDataBase,
@@ -52,7 +51,7 @@ test('Turėtų neužregistruoti mokytojo', async () => {
     .expect(400);
 
   const errors = response.body.errors;
-  expect(errors[1].msg).toContain('Įveskite savo el. paštą');
+  expect(errors[1].msg).toBe('Įveskite savo el. paštą');
 });
 
 // Login teacher test
@@ -80,6 +79,9 @@ test('Turėtų neprijungti mokytojo', async () => {
 
   const newToken = response.body.token;
   expect(newToken).toBeUndefined();
+
+  const errors = response.body.errors;
+  expect(errors[0].msg).toBe('Mokytojas su šiais prisijungimais neegzistuoja');
 });
 
 // Get teachers profile test
