@@ -12,7 +12,7 @@ const {
 
 beforeEach(setupDataBase);
 
-// Register test
+// Register teacher test
 test('Turėtų užregistruoti mokytoją', async () => {
   const response = await request(app)
     .post('/api/teachers')
@@ -27,7 +27,7 @@ test('Turėtų užregistruoti mokytoją', async () => {
     .expect(201);
 
   const newToken = response.body.token;
-  expect(newToken).not.toBeNull();
+  expect(newToken).not.toBeUndefined();
 
   const newTeacher = await Teacher.findOne({ name: 'Salvinija' });
   expect(newTeacher).toMatchObject({
@@ -55,7 +55,7 @@ test('Turėtų neužregistruoti mokytojo', async () => {
   expect(errors[1].msg).toContain('Įveskite savo el. paštą');
 });
 
-// Login test
+// Login teacher test
 test('Turėtų prijungti mokytoją', async () => {
   const response = await request(app)
     .post('/api/auth-teacher')
@@ -66,7 +66,7 @@ test('Turėtų prijungti mokytoją', async () => {
     .expect(200);
 
   const newToken = response.body.token;
-  expect(newToken).not.toBeNull();
+  expect(newToken).not.toBeUndefined();
 });
 
 test('Turėtų neprijungti mokytojo', async () => {
@@ -97,7 +97,12 @@ test('Turėtų gauti prisijungusio mokytojo paskyrą', async () => {
 });
 
 test('Neturėtų gauti mokytojo paskyros, neprisijungęs naudotojas', async () => {
-  await request(app).get('/api/teachers/me').send().expect(401);
+  const response = await request(app)
+    .get('/api/teachers/me')
+    .send()
+    .expect(401);
+
+  expect(response.body.msg).toBe('Not Authorized');
 });
 
 // Get teachers list test
@@ -110,6 +115,12 @@ test('Turėtų gauti mokytojų sąrašą', async () => {
 
   const teachersList = response.body;
   expect(teachersList.length).toBe(2);
+});
+
+test('Neturėtų gauti mokytojų sąrašą, neprisijungęs naudotojas', async () => {
+  const response = await request(app).get('/api/teachers').send().expect(401);
+
+  expect(response.body.msg).toBe('Not Authorized');
 });
 
 // Get teacher by :id test
@@ -126,4 +137,14 @@ test('Turėtų gauti mokytoją, pagal mokytojo id', async () => {
     surname: secondTeacher.surname,
     email: secondTeacher.email,
   });
+});
+
+test('Neturėtų gauti mokytojo, pagal mokytojo id, neprisijungęs naudotojas', async () => {
+  const response = await request(app)
+    .get('/api/teachers/' + teacherTwoId.valueOf())
+    .set('x-auth-token', 'badToken')
+    .send()
+    .expect(401);
+
+  expect(response.body.msg).toBe('Not Authorized');
 });

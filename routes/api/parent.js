@@ -6,7 +6,6 @@ const jwt = require('jsonwebtoken');
 const authParent = require('../../middleware/auth-parent');
 
 const Parent = require('../../models/Parent');
-const Teacher = require('../../models/Teacher');
 
 // POST api/parents
 // Register parent
@@ -67,7 +66,7 @@ router.post(
           if (err) {
             throw err;
           }
-          res.json({ token });
+          res.status(201).json({ token });
         }
       );
     } catch (error) {

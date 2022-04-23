@@ -4,7 +4,7 @@ const auth = (req, res, next) => {
   const token = req.header('x-auth-token');
 
   if (!token) {
-    return res.status(404).json({ msg: 'Not Authorized' });
+    return res.status(401).json({ msg: 'Not Authorized' });
   }
 
   try {
@@ -12,7 +12,7 @@ const auth = (req, res, next) => {
     req.parent = decoded.parent;
     next();
   } catch (error) {
-    res.status(404).json({ msg: 'Not Authorized' });
+    res.status(401).json({ msg: 'Not Authorized' });
   }
 };
 

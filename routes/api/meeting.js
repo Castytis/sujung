@@ -44,7 +44,7 @@ router.post(
       });
 
       const meeting = await newMeeting.save();
-      res.json(meeting);
+      res.status(201).json(meeting);
     } catch (error) {
       console.error(error.message);
       res.status(500).send('Server Error');
