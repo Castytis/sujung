@@ -14,7 +14,7 @@ const Meeting = require('../../models/Meeting');
 router.post('/create-pdf', authTeacher, async (req, res) => {
   await pdf
     .create(pdfTemplate(req.body), {})
-    .toFile('result.pdf', (err, response) => {
+    .toFile('ataskaita.pdf', (err, response) => {
       if (err) {
         res.send(err);
       }
@@ -26,7 +26,7 @@ router.post('/create-pdf', authTeacher, async (req, res) => {
 // GET api/meetings/fetch-pdf
 // Download meeting report
 router.get('/fetch-pdf', authTeacher, async (req, res) => {
-  await res.sendFile('C:/Users/kasty/Documents/JS Study/BD/result.pdf');
+  await res.sendFile('C:/Users/kasty/Documents/JS Study/BD/ataskaita.pdf');
 });
 
 // Teacher
@@ -96,7 +96,9 @@ router.get('/me', authTeacher, async (req, res) => {
   try {
     const id = req.teacher.id;
 
-    const meetings = await Meeting.find({ organiser: id });
+    const meetings = await Meeting.find({ organiser: id })
+      .populate('participants.teachers.teacher', ['name', 'surname'])
+      .populate('participants.parents.parent', ['name', 'surname']);
 
     res.json(meetings);
   } catch (error) {

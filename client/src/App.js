@@ -16,7 +16,6 @@ import TeacherList from './components/teacher/TeacherList';
 import './App.css';
 import Teacher from './components/teacher/Teacher';
 import TeacherAccount from './components/account/TeacherAccount';
-import Parent from './components/parent/Parent';
 import ParentAccount from './components/account/ParentAccount';
 import MeetingList from './components/meeting/MeetingList';
 import MeetingInfo from './components/meeting/MeetingInfo';

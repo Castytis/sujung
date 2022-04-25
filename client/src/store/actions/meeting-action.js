@@ -144,7 +144,7 @@ export const createMeeting = (formData, navigate) => {
 export const deleteMeeting = (meetingId) => {
   return async (dispatch) => {
     try {
-      const res = await axios.delete(`/api/meetings/${meetingId}`);
+      await axios.delete(`/api/meetings/${meetingId}`);
 
       dispatch({
         type: 'DELETE_MEETING',
@@ -172,6 +172,6 @@ export const downloadReport = (reportData) => {
       type: 'application/pdf',
     });
 
-    await saveAs(pdfBlob, 'newPdf.pdf');
+    await saveAs(pdfBlob, 'ataskaita.pdf');
   };
 };
