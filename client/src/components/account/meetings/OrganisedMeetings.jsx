@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, Accordion, Button } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { deleteMeeting } from '../../../store/actions/meeting-action';
+import { downloadReport } from '../../../store/actions/meeting-action';
 
 const OrganisedMeetings = (props) => {
   const dispatch = useDispatch();
@@ -30,7 +31,17 @@ const OrganisedMeetings = (props) => {
 
               <Accordion.Body>
                 <Button
+                  variant='info'
+                  style={{ color: 'white' }}
+                  onClick={() => {
+                    dispatch(downloadReport(meeting));
+                  }}
+                >
+                  Atsisiųsti ataskaitą
+                </Button>
+                <Button
                   variant='danger'
+                  className='float-end'
                   onClick={() => {
                     dispatch(deleteMeeting(meeting._id));
                   }}

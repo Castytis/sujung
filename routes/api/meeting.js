@@ -1,12 +1,33 @@
 const express = require('express');
 const router = express.Router();
+const pdf = require('html-pdf');
+const pdfTemplate = require('../../documents');
 const authParent = require('../../middleware/auth-parent');
 const authTeacher = require('../../middleware/auth-teacher');
 const { body, validationResult } = require('express-validator');
 
 const Meeting = require('../../models/Meeting');
-const Teacher = require('../../models/Teacher');
-const Parent = require('../../models/Parent');
+
+// Teacher
+// POST api/meetings/create-pdf
+// Generate meeting report
+router.post('/create-pdf', authTeacher, async (req, res) => {
+  await pdf
+    .create(pdfTemplate(req.body), {})
+    .toFile('result.pdf', (err, response) => {
+      if (err) {
+        res.send(err);
+      }
+      res.send(response);
+    });
+});
+
+// Teacher
+// GET api/meetings/fetch-pdf
+// Download meeting report
+router.get('/fetch-pdf', authTeacher, async (req, res) => {
+  await res.sendFile('C:/Users/kasty/Documents/JS Study/BD/result.pdf');
+});
 
 // Teacher
 // POST api/meetings

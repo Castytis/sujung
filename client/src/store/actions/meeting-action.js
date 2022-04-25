@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { saveAs } from 'file-saver';
 import { setNotification } from './notification-action';
 
 export const getAllMeetings = () => {
@@ -156,5 +157,21 @@ export const deleteMeeting = (meetingId) => {
         type: 'MEETINGS_ERROR',
       });
     }
+  };
+};
+
+export const downloadReport = (reportData) => {
+  return async () => {
+    await axios.post('/api/meetings/create-pdf', reportData);
+
+    const response = await axios.get('/api/meetings/fetch-pdf', {
+      responseType: 'blob',
+    });
+
+    const pdfBlob = await new Blob([response.data], {
+      type: 'application/pdf',
+    });
+
+    await saveAs(pdfBlob, 'newPdf.pdf');
   };
 };
