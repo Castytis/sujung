@@ -84,7 +84,7 @@ router.post(
 
 // GET api/teachers
 // Get all teachers
-router.get('/', authTeacher, authParent, async (req, res) => {
+router.get('/', [authTeacher, authParent], async (req, res) => {
   try {
     const teachers = await Teacher.find();
     res.json(teachers);
@@ -127,7 +127,7 @@ router.put('/me', authTeacher, async (req, res) => {
 
 // GET api/teachers/:teacher_id
 // Get teacher by ID
-router.get('/:teacher_id', authParent, authTeacher, async (req, res) => {
+router.get('/:teacher_id', [authParent, authTeacher], async (req, res) => {
   try {
     const id = req.params.teacher_id;
     const teacher = await Teacher.findOne({ _id: id });

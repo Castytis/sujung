@@ -16,9 +16,9 @@ test('Mokytojas turėtų sukurti susitikimą', async () => {
     .post('/api/meetings')
     .set('x-auth-token', teacherOneToken)
     .send({
-      title: 'test title',
-      subject: 'test subject',
-      date: '2022-11-02',
+      title: 'testas',
+      subject: 'mano tikslas',
+      date: '2022-06-02',
       time: '17:30',
       location: '513 kabinetas',
     })

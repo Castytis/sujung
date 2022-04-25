@@ -44,9 +44,8 @@ test('Turėtų neužregistruoti mokytojo', async () => {
   const response = await request(app)
     .post('/api/teachers')
     .send({
-      name: 'name',
-      email: '',
-      password: 'password123',
+      name: 'Salvinija',
+      password: '@SaL123456',
     })
     .expect(400);
 

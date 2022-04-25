@@ -69,7 +69,7 @@ const meetingOne = {
 
 const meetingTwo = {
   _id: meetingTwoId,
-  organiser: teacherTwoId,
+  organiser: teacherOneId,
   title: 'Susitikimas su mokinių globėjais',
   subject: 'Aptarti mokinių matematinius rezultatus',
   date: '2022-06-01',
