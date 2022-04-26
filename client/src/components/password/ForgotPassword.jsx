@@ -9,7 +9,7 @@ const Styles = styled.div`
   h6 {
     display: inline-block;
   }
-  max-width: 560px;
+  max-width: 480px;
   margin: auto;
 `;
 
