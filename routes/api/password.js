@@ -24,7 +24,7 @@ router.put('/forgotpassword', async (req, res) => {
   if (!teacher && !parent) {
     return res
       .status(400)
-      .json({ error: 'Naudotojas su tokiu el. paštu neegzistuoja' });
+      .json({ msg: 'Naudotojas su tokiu el. paštu neegzistuoja' });
   }
 
   if (teacher) {
@@ -55,7 +55,7 @@ router.put('/forgotpassword', async (req, res) => {
     if (updated) {
       mg.messages().send(data, (error, body) => {
         if (error) {
-          return res.json({
+          return res.status(400).json({
             msg: 'Slaptažodžio atkūrimas nepavyko, bandykite dar karta',
           });
         }
@@ -76,9 +76,9 @@ router.put('/forgotpassword', async (req, res) => {
     const data = {
       from: 'noreply@sujung.com',
       to: email,
-      subject: 'Account reset link',
+      subject: 'Slaptažodžio keitimo nuoroda',
       html: `
-          <h2>Click on link to reset password</h2>
+          <h2>Slaptažodžio keitimo nuoroda</h2>
           <p>${process.env.URL}/resetpassword/${token}</p>
           `,
     };

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { sendPasswordRecoveryLink } from '../../store/actions/password-reset-action';
 
 import styled from 'styled-components';
 
@@ -21,16 +22,18 @@ const CancelLink = styled(Link)`
   }
 `;
 
-const AcceptLink = styled(Link)`
-  text-decoration: none;
-  color: black;
-  &:hover {
-    color: white;
-  }
-`;
-
 const ForgotPassword = () => {
+  const [email, setEmail] = useState('');
   const dispatch = useDispatch();
+
+  const emailChangeHandler = (event) => {
+    setEmail(event.target.value);
+  };
+
+  const sendPasswordResetLinkHandler = (event) => {
+    event.preventDefault();
+    dispatch(sendPasswordRecoveryLink({ email }));
+  };
 
   return (
     <Styles>
@@ -38,17 +41,22 @@ const ForgotPassword = () => {
         <Row>
           <Col className='p-5'>
             <h3 className='text-center p-2'>Slaptažodžio atkūrimas </h3>
-            <Form>
+            <Form onSubmit={sendPasswordResetLinkHandler}>
               <Form.Group className='mb-3'>
                 <Form.Label>Paskyros el. paštas </Form.Label>
-                <Form.Control type='text' placeholder='el. paštas' />
+                <Form.Control
+                  type='text'
+                  value={email}
+                  onChange={emailChangeHandler}
+                  placeholder='el. paštas'
+                />
               </Form.Group>
 
               <Button variant='danger' className='float-start'>
                 <CancelLink to='../'>Atšaukti</CancelLink>
               </Button>
               <Button variant='warning' type='submit' className='float-end'>
-                <AcceptLink to='#'>Patvirtinti</AcceptLink>
+                Patvirtinti
               </Button>
             </Form>
           </Col>

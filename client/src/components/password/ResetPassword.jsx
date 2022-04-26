@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Form, Button, Container, Row, Col } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
+import { resetPassword } from '../../store/actions/password-reset-action';
 
 import styled from 'styled-components';
 
@@ -21,16 +22,21 @@ const CancelLink = styled(Link)`
   }
 `;
 
-const AcceptLink = styled(Link)`
-  text-decoration: none;
-  color: black;
-  &:hover {
-    color: white;
-  }
-`;
-
 const ResetPassword = () => {
+  const [password, setPassword] = useState('');
+
+  const navigate = useNavigate();
   const dispatch = useDispatch();
+  const link = useParams();
+
+  const passwordChangeHandler = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const passwordChange = (event) => {
+    event.preventDefault();
+    dispatch(resetPassword(password, link, navigate));
+  };
 
   return (
     <Styles>
@@ -38,21 +44,24 @@ const ResetPassword = () => {
         <Row>
           <Col className='p-5'>
             <h3 className='text-center p-2'>Naujas slaptažodis </h3>
-            <Form>
+            <Form onSubmit={passwordChange}>
               <Form.Group className='mb-3'>
                 <Form.Label>Naujas slaptažodis</Form.Label>
-                <Form.Control type='password' placeholder='slaptažodis' />
-              </Form.Group>
-              <Form.Group className='mb-3'>
-                <Form.Label>Pakartokite naują slaptažodis</Form.Label>
-                <Form.Control type='password' placeholder='slaptažodis' />
+                <Form.Control
+                  type='password'
+                  value={password}
+                  required
+                  minLength={6}
+                  onChange={passwordChangeHandler}
+                  placeholder='slaptažodis'
+                />
               </Form.Group>
 
               <Button variant='danger' className='float-start'>
                 <CancelLink to='../'>Atšaukti</CancelLink>
               </Button>
               <Button variant='warning' type='submit' className='float-end'>
-                <AcceptLink to='#'>Patvirtinti</AcceptLink>
+                Patvirtinti
               </Button>
             </Form>
           </Col>
