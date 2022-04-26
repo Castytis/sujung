@@ -19,6 +19,7 @@ test('Turėtų užregistruoti mokytoją', async () => {
       name: 'Salvinija',
       surname: 'Baranauskaitė',
       email: 'salvinija@gmail.com',
+      number: '865442897',
       subject: 'Fizika',
       classes: '5a, 6a',
       password: '@SaL123456',
@@ -33,6 +34,7 @@ test('Turėtų užregistruoti mokytoją', async () => {
     name: 'Salvinija',
     surname: 'Baranauskaitė',
     email: 'salvinija@gmail.com',
+    number: '865442897',
     subject: 'Fizika',
     classes: '5a, 6a',
   });

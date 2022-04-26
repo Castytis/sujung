@@ -49,7 +49,7 @@ const Register = () => {
   const [surname, setSurname] = useState('');
   const [subject, setSubject] = useState('');
   const [classes, setClasses] = useState('');
-  const [phoneNumber, setPhoneNumber] = useState('');
+  const [number, setNumber] = useState('');
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -95,7 +95,7 @@ const Register = () => {
   };
 
   const phoneNumberHandler = (event) => {
-    setPhoneNumber(event.target.value);
+    setNumber(event.target.value);
   };
 
   const registerUserHandler = (event) => {
@@ -103,7 +103,15 @@ const Register = () => {
 
     if (isTeacher) {
       dispatch(
-        registerTeacher({ email, password, name, surname, subject, classes })
+        registerTeacher({
+          email,
+          password,
+          name,
+          surname,
+          subject,
+          classes,
+          number,
+        })
       );
     }
 
@@ -205,7 +213,7 @@ const Register = () => {
                   <Form.Label>Tel. Numeris</Form.Label>
                   <Form.Control
                     type='text'
-                    value={phoneNumber}
+                    value={number}
                     onChange={phoneNumberHandler}
                     placeholder='Tel. Numeris'
                   />

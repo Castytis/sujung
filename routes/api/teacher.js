@@ -21,6 +21,7 @@ router.post(
       'Slaptažodis turi būti netrumpesnis nei 6 simboliai'
     ).isLength({ min: 6 }),
     body('subject', 'Įveskite mokamąjį dalyką').not().isEmpty(),
+    body('number', 'Įveskite tel. numerį').not().isEmpty(),
     body('classes', 'Įveskite priklausančias klases').not().isEmpty(),
   ],
   async (req, res) => {
@@ -29,7 +30,7 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const { name, surname, email, password, subject, classes, info, number } =
+    const { name, surname, email, password, subject, classes, number } =
       req.body;
 
     try {
@@ -48,7 +49,6 @@ router.post(
         password,
         subject,
         classes,
-        info,
         number,
       });
 

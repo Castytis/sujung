@@ -1,7 +1,5 @@
 const mongoose = require('mongoose');
 
-const Schema = mongoose.Schema;
-
 const TeacherSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -28,12 +26,13 @@ const TeacherSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  info: {
-    type: String,
-  },
   classes: {
     type: String,
     required: true,
+  },
+  resetLink: {
+    type: String,
+    default: '',
   },
 });
 

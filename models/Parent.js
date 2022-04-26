@@ -19,6 +19,10 @@ const ParentSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  resetLink: {
+    data: String,
+    default: '',
+  },
 });
 
 const Parent = mongoose.model('parent', ParentSchema);
