@@ -48,17 +48,60 @@ router.put('/forgotpassword', async (req, res) => {
     const updated = await teacher.updateOne({ resetLink: token });
 
     if (!updated) {
-      return res.status(400).json({ error: 'Reset failed' });
+      return res.status(400).json({
+        msg: 'Slaptažodžio atkūrimas nepavyko, bandykite dar karta',
+      });
     }
 
     if (updated) {
       mg.messages().send(data, (error, body) => {
         if (error) {
           return res.json({
-            error: 'failed',
+            msg: 'Slaptažodžio atkūrimas nepavyko, bandykite dar karta',
           });
         }
-        return res.json({ message: 'Email sent' });
+        return res.json({
+          msg: 'Slaptažodžio atkūrimo nuoroda išsiųsta sėkmingai',
+        });
+      });
+    }
+  }
+
+  if (parent) {
+    const token = jwt.sign(
+      { _id: parent._id },
+      process.env.RESET_PASSWORD_KEY,
+      { expiresIn: '30m' }
+    );
+
+    const data = {
+      from: 'noreply@sujung.com',
+      to: email,
+      subject: 'Account reset link',
+      html: `
+          <h2>Click on link to reset password</h2>
+          <p>${process.env.URL}/resetpassword/${token}</p>
+          `,
+    };
+
+    const updated = await parent.updateOne({ resetLink: token });
+
+    if (!updated) {
+      return res.status(400).json({
+        msg: 'Slaptažodžio atkūrimas nepavyko, bandykite dar karta',
+      });
+    }
+
+    if (updated) {
+      mg.messages().send(data, (error, body) => {
+        if (error) {
+          return res.json({
+            msg: 'Slaptažodžio atkūrimas nepavyko, bandykite dar karta',
+          });
+        }
+        return res.json({
+          msg: 'Slaptažodžio atkūrimo nuoroda išsiųsta sėkmingai',
+        });
       });
     }
   }
@@ -79,18 +122,28 @@ router.put('/resetpassword', async (req, res) => {
     return res.status(401).json({ error: 'Auth error' });
   }
 
-  if (teacher) {
-    const result = jwt.verify(resetLink, process.env.RESET_PASSWORD_KEY);
+  const result = jwt.verify(resetLink, process.env.RESET_PASSWORD_KEY);
+  if (!result) {
+    return res.status(401).json({
+      msg: 'Slaptažodžio atkūrimo nuoroda neteisinga arba nebegalioja',
+    });
+  }
+  if (result) {
+    const obj = {
+      password: password,
+      resetLink: '',
+    };
 
-    if (result) {
-      const obj = {
-        password: password,
-        resetLink: '',
-      };
-
+    if (teacher) {
       teacher = _.extend(teacher, obj);
       await teacher.save();
-      res.status(200).json({ message: 'pakeista' });
+      res.status(200).json({ msg: 'Slaptažodis pakeistas sėkmingai' });
+    }
+
+    if (parent) {
+      parent = _.extend(parent, obj);
+      await parent.save();
+      res.status(200).json({ msg: 'Slaptažodis pakeistas sėkmingai' });
     }
   }
 });
