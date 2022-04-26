@@ -22,7 +22,7 @@ const TeachersMeetings = () => {
   }, [getCurrentParticipantsMeetings]);
 
   return (
-    <Row xs={1} md={2} className='g-4 m-5 '>
+    <Row xs={1} md={2} className='g-4 m-5 ' style={{ width: '90rem' }}>
       <Col className='justify-content-center mt-5'>
         <Card style={{ width: '26rem' }}>
           {!organisedMeetings.length > 0 ? (

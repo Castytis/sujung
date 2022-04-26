@@ -8,7 +8,7 @@ const ParticipatingMeetings = (props) => {
 
   return (
     <Card style={{ width: '26rem' }}>
-      <Card.Title className='text-center'>
+      <Card.Title className='text-center' style={{ color: 'blue' }}>
         Susitikimai, kuriuose dalyvaujate
       </Card.Title>
       <Accordion defaultActiveKey='0' flush>
@@ -16,7 +16,7 @@ const ParticipatingMeetings = (props) => {
           <Accordion.Item eventKey={index}>
             <Accordion.Header>{meeting.title}</Accordion.Header>
             <Accordion.Body>
-              <span className='text-muted'>Tema: </span> {meeting.subject}
+              <span className='text-muted'>Tikslas: </span> {meeting.subject}
             </Accordion.Body>
             <Accordion.Body>
               <span className='text-muted'>Data ir laikas: </span>

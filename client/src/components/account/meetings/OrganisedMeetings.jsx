@@ -10,7 +10,7 @@ const OrganisedMeetings = (props) => {
   if (props.meeting) {
     return (
       <Card style={{ width: '26rem' }}>
-        <Card.Title className='text-center'>
+        <Card.Title className='text-center' style={{ color: 'blue' }}>
           Organizuojami susitikimai
         </Card.Title>
         <Accordion defaultActiveKey='0' flush>
@@ -19,7 +19,7 @@ const OrganisedMeetings = (props) => {
               <Accordion.Header>{meeting.title}</Accordion.Header>
               <Accordion.Body>
                 {' '}
-                <span className='text-muted'>Tema:</span> {meeting.subject}
+                <span className='text-muted'>Tikslas: </span> {meeting.subject}
               </Accordion.Body>
               <Accordion.Body>
                 <span className='text-muted'>Data ir laikas: </span>{' '}

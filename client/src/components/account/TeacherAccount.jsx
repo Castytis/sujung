@@ -32,7 +32,7 @@ const TeacherAccount = () => {
           </Card.Body>
           <ListGroup className='list-group-flush'>
             <ListGroupItem>
-              <span className='text-muted'>Mokamasis dalykas:</span>{' '}
+              <span className='text-muted'>Mokomas dalykas:</span>{' '}
               {currentTeacher.subject}.
             </ListGroupItem>
             <ListGroupItem>

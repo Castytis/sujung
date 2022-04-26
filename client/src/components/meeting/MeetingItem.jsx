@@ -26,12 +26,22 @@ const MeetingItem = (props) => {
         </Card.Body>
         <ListGroup className='list-group-flush'>
           <ListGroupItem>
+            <span className='text-muted'>Organizuoja: </span>{' '}
             {props.meeting.organiser.name} {props.meeting.organiser.surname}
           </ListGroupItem>
-          <ListGroupItem>{props.meeting.subject}</ListGroupItem>
-          <ListGroupItem>{props.meeting.location}</ListGroupItem>
-          <ListGroupItem>{props.meeting.date}</ListGroupItem>
-          <ListGroupItem>{props.meeting.time}</ListGroupItem>
+          <ListGroupItem>
+            <span className='text-muted'>Tikslas: </span>{' '}
+            {props.meeting.subject}
+          </ListGroupItem>
+          <ListGroupItem>
+            <span className='text-muted'>Vieta: </span> {props.meeting.location}
+          </ListGroupItem>
+          <ListGroupItem>
+            <span className='text-muted'>Data: </span> {props.meeting.date}
+          </ListGroupItem>
+          <ListGroupItem>
+            <span className='text-muted'>Laikas: </span> {props.meeting.time}
+          </ListGroupItem>
         </ListGroup>
         <Card.Body>
           <Button variant='outline-info'>

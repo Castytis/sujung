@@ -77,6 +77,7 @@ export const loadTeacher = () => {
 
 export const logoutTeacher = () => {
   return async (dispatch) => {
+    dispatch(setNotification('Atsijungėtė nuo sistemos', 'success'));
     dispatch({
       type: 'LOGOUT_TEACHER',
     });

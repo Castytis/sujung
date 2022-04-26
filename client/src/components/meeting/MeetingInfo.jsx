@@ -36,20 +36,32 @@ const MeetingInfo = () => {
     return (
       <Col className='d-flex justify-content-center mt-5'>
         <Card style={{ width: '22rem' }}>
-          <Card.Header>{meeting.title}</Card.Header>
           <Card.Body>
-            <Card.Title>{meeting.subject}</Card.Title>
+            <Card.Title style={{ color: 'blue' }}>{meeting.title}</Card.Title>
             <Card.Text>
-              <span className='text-muted'>Organizatorius:</span>{' '}
+              <span className='text-muted'>Organizuoja:</span>{' '}
               {meeting.organiser.name} {meeting.organiser.surname}
             </Card.Text>
           </Card.Body>
           <ListGroup className='list-group-flush'>
-            <ListGroupItem>{meeting.location}</ListGroupItem>
-            <ListGroupItem>{meeting.date}</ListGroupItem>
-            <ListGroupItem>{meeting.time}</ListGroupItem>
+            <ListGroupItem>
+              <span className='text-muted'>Tikslas: </span>
+              {meeting.subject}
+            </ListGroupItem>
+            <ListGroupItem>
+              <span className='text-muted'>Vieta: </span>
+              {meeting.location}
+            </ListGroupItem>
+            <ListGroupItem>
+              <span className='text-muted'>Data: </span>
+              {meeting.date}
+            </ListGroupItem>
+            <ListGroupItem>
+              <span className='text-muted'>Laikas: </span>
+              {meeting.time}
+            </ListGroupItem>
           </ListGroup>
-          <Card.Header>
+          <Card.Header style={{ color: 'blue' }}>
             Mokytojai dalyviai: {teacherParticipants.length}
           </Card.Header>
           <ListGroup className='list-group-flush'>
@@ -61,7 +73,7 @@ const MeetingInfo = () => {
               />
             ))}
           </ListGroup>
-          <Card.Header>
+          <Card.Header style={{ color: 'blue' }}>
             Globėjai dalyviai: {parentParticipants.length}
           </Card.Header>
           <ListGroup className='list-group-flush'>

@@ -77,6 +77,7 @@ export const loadParent = () => {
 
 export const logoutParent = () => {
   return async (dispatch) => {
+    dispatch(setNotification('Atsijungėtė nuo sistemos', 'success'));
     dispatch({
       type: 'LOGOUT_PARENT',
     });

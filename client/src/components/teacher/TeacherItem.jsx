@@ -14,7 +14,7 @@ const StyledLink = styled(Link)`
 const TeacherItem = (props) => {
   return (
     <Col className='mt-5'>
-      <Card>
+      <Card style={{ width: '26rem' }}>
         <Card.Body>
           <Card.Title>
             {props.teacher.name + ' ' + props.teacher.surname}
@@ -23,9 +23,6 @@ const TeacherItem = (props) => {
             {props.teacher.subject}
           </Card.Subtitle>
           <Card.Text>Klasės {props.teacher.classes}</Card.Text>
-          <Card.Text className='mb-2 text-muted'>
-            El. paštas {props.teacher.email}
-          </Card.Text>
           <Button variant='' className='float-start btn btn-outline-warning'>
             <StyledLink to={`/teachers/${props.teacher._id}`}>
               Daugiau informacijos

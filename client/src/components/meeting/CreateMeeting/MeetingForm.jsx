@@ -111,7 +111,7 @@ const MeetingForm = () => {
               <Button variant='danger' className='float-start'>
                 <CancelLink to='../meetings'>Atšaukti</CancelLink>
               </Button>
-              <Button variant='warning' type='submit' className='float-end'>
+              <Button variant='success' type='submit' className='float-end'>
                 Sukurti
               </Button>
             </Form>

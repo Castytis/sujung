@@ -26,9 +26,9 @@ const CancelLink = styled(Link)`
 
 const AcceptLink = styled(Link)`
   text-decoration: none;
-  color: black;
+  color: white;
   &:hover {
-    color: white;
+    color: black;
   }
 `;
 
@@ -219,12 +219,12 @@ const Register = () => {
                   />
                 </Form.Group>
                 <Form.Group className='mb-3'>
-                  <Form.Label>Mokomasis dalykas</Form.Label>
+                  <Form.Label>Mokomas dalykas</Form.Label>
                   <Form.Control
                     type='text'
                     value={subject}
                     onChange={subjectChangeHandler}
-                    placeholder='Mokomasis dalykas'
+                    placeholder='Mokomas dalykas'
                   />
                 </Form.Group>
                 <Form.Group className='mb-3'>
@@ -236,16 +236,16 @@ const Register = () => {
                     placeholder='Klasės'
                   />
                 </Form.Group>
+                <Button variant='danger' className='float-start'>
+                  <CancelLink to='/'>Atšaukti</CancelLink>
+                </Button>
                 <Button
-                  variant='warning'
+                  variant='success'
                   type='submit'
                   onClick={registerUserHandler}
-                  className='float-start'
+                  className='float-end'
                 >
                   <AcceptLink to='#'>Registruotis</AcceptLink>
-                </Button>
-                <Button variant='danger' className='float-end'>
-                  <CancelLink to='/'>Atšaukti</CancelLink>
                 </Button>
               </Form>
             ) : (
@@ -295,17 +295,16 @@ const Register = () => {
                     placeholder='Pavardė'
                   />
                 </Form.Group>
-
+                <Button variant='danger' className='float-start'>
+                  <CancelLink to='/'>Atšaukti</CancelLink>
+                </Button>
                 <Button
-                  variant='warning'
+                  variant='success'
                   type='submit'
                   onClick={registerUserHandler}
-                  className='float-start'
+                  className='float-end'
                 >
                   <AcceptLink to='#'>Registruotis</AcceptLink>
-                </Button>
-                <Button variant='danger' className='float-end'>
-                  <CancelLink to='/'>Atšaukti</CancelLink>
                 </Button>
               </Form>
             )}

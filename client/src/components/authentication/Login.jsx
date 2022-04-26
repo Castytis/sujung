@@ -27,9 +27,9 @@ const CancelLink = styled(Link)`
 
 const AcceptLink = styled(Link)`
   text-decoration: none;
-  color: black;
+  color: white;
   &:hover {
-    color: white;
+    color: black;
   }
 `;
 
@@ -131,16 +131,16 @@ const Login = () => {
                   placeholder='Slaptažodis'
                 />
               </Form.Group>
+              <Button variant='danger' className='float-start'>
+                <CancelLink to='/'>Atšaukti</CancelLink>
+              </Button>
               <Button
                 onClick={isTeacher ? loginTeacherHandler : loginParentHandler}
-                variant='warning'
+                variant='success'
                 type='submit'
-                className='float-start'
+                className='float-end'
               >
                 <AcceptLink to='#'>Prisijungti</AcceptLink>
-              </Button>
-              <Button variant='danger' className='float-end'>
-                <CancelLink to='/'>Atšaukti</CancelLink>
               </Button>
             </Form>
           </Col>
