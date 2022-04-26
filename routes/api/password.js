@@ -7,7 +7,6 @@ const bcrypt = require('bcryptjs');
 
 const Teacher = require('../../models/Teacher');
 const Parent = require('../../models/Parent');
-const { findOne } = require('../../models/Teacher');
 
 const mg = mailgun({
   apiKey: process.env.MAILGUN_API_KEY,

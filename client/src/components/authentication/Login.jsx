@@ -144,6 +144,13 @@ const Login = () => {
               </Button>
             </Form>
           </Col>
+          <Link
+            className='text-center'
+            style={{ 'text-decoration': 'none' }}
+            to='/forgotpassword'
+          >
+            Pamiršote paskyros slaptažodį?
+          </Link>
         </Row>
       </Container>
     </Styles>

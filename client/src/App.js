@@ -24,6 +24,7 @@ import MeetingForm from './components/meeting/CreateMeeting/MeetingForm';
 import ParentsMeetings from './components/account/ParentsMeetings';
 import TeachersMeetingList from './components/teacher/teacherMeetings/TeachersMeetingList';
 import Notification from './components/layout/Notification';
+import ForgotPassword from './components/password/ForgotPassword';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -62,6 +63,7 @@ const App = () => {
                 path='/teachers/:id/meetings'
                 element={<TeachersMeetingList />}
               />
+              <Route path='/forgotpassword' element={<ForgotPassword />} />
             </Routes>
           </Layout>
         </BrowserRouter>
